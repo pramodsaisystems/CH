@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import Dashboard from "./containers/dashboard/dashboard";
 import NotFound from "./containers/notfound/notfound";
+import RFiles from "./containers/RFiles/RFiles";
 import {
   DesktopOutlined,
   FileOutlined,
@@ -9,7 +10,9 @@ import {
   TeamOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { Breadcrumb, Layout, Menu, theme } from "antd";
+import { Layout, Menu, theme } from "antd";
+import { useNavigate } from "react-router-dom";
+
 import "./App.css";
 const { Header, Content, Footer, Sider } = Layout;
 function getItem(label, key, icon, children) {
@@ -22,7 +25,7 @@ function getItem(label, key, icon, children) {
 }
 const items = [
   getItem("Dashboard", "/", <PieChartOutlined />),
-  getItem("837", "2", <DesktopOutlined />),
+  getItem("837", "837", <DesktopOutlined />),
   getItem(
     "835",
     "sub1",
@@ -39,9 +42,16 @@ const items = [
 
 const App = () => {
   const [collapsed, setCollapsed] = useState(false);
+  const [selectedMenu, setSelectedMenu] = useState("/");
+  const navigate = useNavigate();
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
+
+  const onMenuClick = (e) => {
+    navigate(e?.key);
+    setSelectedMenu(e?.key);
+  };
   return (
     <div className="App">
       <Layout
@@ -57,9 +67,12 @@ const App = () => {
           <div className="demo-logo-vertical" style={{ height: "64px" }}></div>
           <Menu
             theme="dark"
-            defaultSelectedKeys={["/"]}
+            defaultSelectedKeys={[selectedMenu]}
             mode="inline"
             items={items}
+            onClick={(e) => {
+              onMenuClick(e);
+            }}
           />
         </Sider>
         <Layout>
@@ -79,14 +92,16 @@ const App = () => {
             <div
               style={{
                 padding: 24,
-                minHeight: "80vh",
+                maxHeight: "calc(100vh - 152px)",
                 background: colorBgContainer,
+                overflow: "auto",
                 borderRadius: borderRadiusLG,
               }}
             >
               <Routes>
                 <Route path="/" exact element={<Dashboard />} />
                 <Route path="*" element={<NotFound />} />
+                <Route path="/837" element={<RFiles />} />
               </Routes>
             </div>
           </Content>
