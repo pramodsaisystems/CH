@@ -14,6 +14,8 @@ import { Layout, Menu, theme } from "antd";
 import { useNavigate } from "react-router-dom";
 
 import "./App.css";
+import ClaimReport from "./containers/reports/claimReport";
+import PatientReport from "./containers/reports/patientReports";
 const { Header, Content, Footer, Sider } = Layout;
 function getItem(label, key, icon, children) {
   return {
@@ -25,19 +27,22 @@ function getItem(label, key, icon, children) {
 }
 const items = [
   getItem("Dashboard", "/", <PieChartOutlined />),
-  getItem("837", "837", <DesktopOutlined />),
-  getItem(
-    "835",
-    "sub1",
-    <UserOutlined />
-    //  [
-    //   getItem("Tom", "3"),
-    //   getItem("Bill", "4"),
-    //   getItem("Alex", "5"),
-    // ]
-  ),
-  getItem("Ack", "9", <FileOutlined />),
-  getItem("Report", "sub2", <TeamOutlined />, [getItem("Claim", "6")]),
+  getItem("RF", "RFDetails", <DesktopOutlined />),
+  // getItem(
+  //   "835",
+  //   "sub1",
+  //   <UserOutlined />
+  //   //  [
+  //   //   getItem("Tom", "3"),
+  //   //   getItem("Bill", "4"),
+  //   //   getItem("Alex", "5"),
+  //   // ]
+  // ),
+  // getItem("Ack", "9", <FileOutlined />),
+  getItem("Report", "sub2", <TeamOutlined />, [
+    getItem("Claim", "reports/claim"),
+    getItem("Patients", "reports/patients"),
+  ]),
 ];
 
 const App = () => {
@@ -101,7 +106,9 @@ const App = () => {
               <Routes>
                 <Route path="/" exact element={<Dashboard />} />
                 <Route path="*" element={<NotFound />} />
-                <Route path="/837" element={<RFiles />} />
+                <Route path="/RFDetails" element={<RFiles />} />
+                <Route path="/reports/claim" element={<ClaimReport />} />
+                <Route path="/reports/patients" element={<PatientReport />} />
               </Routes>
             </div>
           </Content>
