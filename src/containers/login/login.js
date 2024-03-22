@@ -2,12 +2,14 @@ import React, { useEffect } from "react";
 import { Button, Card, Form, Input, Row, Col } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { login, updateLogin } from "./actions";
-import { history } from "../../helper";
+import { useNavigate } from "react-router-dom";
+
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import "./login.css";
 
 const Login = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   //get data from redux store
   const loginDetails = useSelector((state) => state.loginReducer?.loggedIn);
 
@@ -18,7 +20,7 @@ const Login = () => {
   };
   useEffect(() => {
     if (loginDetails) {
-      history.navigate("/dashboard");
+      navigate("/dashboard");
     }
   }, [loginDetails]);
 

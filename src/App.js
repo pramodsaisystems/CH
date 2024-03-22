@@ -3,7 +3,6 @@ import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
 import Dashboard from "./containers/dashboard/dashboard";
 import NotFound from "./containers/notfound/notfound";
 import RFiles from "./containers/RFiles/RFiles";
-import { history } from "./helper";
 import {
   DesktopOutlined,
   FileOutlined,
@@ -48,10 +47,6 @@ const items = [
 ];
 
 const App = () => {
-  history.navigate = useNavigate();
-  const location = useLocation();
-  history.location = useLocation();
-
   const [collapsed, setCollapsed] = useState(false);
   const [selectedMenu, setSelectedMenu] = useState("/");
   const navigate = useNavigate();
