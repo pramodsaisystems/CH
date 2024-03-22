@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useDebugValue } from "react";
+import React, { useState, useEffect } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import Dashboard from "./containers/dashboard/dashboard";
 import NotFound from "./containers/notfound/notfound";
@@ -15,7 +15,6 @@ import Login from "./containers/login/login";
 import Reports from "./containers/reports/reports";
 import { useDispatch, useSelector } from "react-redux";
 import { updateLogin } from "./containers/login/actions";
-import { UseDispatch } from "react-redux";
 import "./App.css";
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -61,7 +60,6 @@ const App = () => {
   };
 
   const onLogout = (values) => {
-    debugger;
     dispatch(updateLogin(false));
   };
 
@@ -72,6 +70,7 @@ const App = () => {
       navigate("/");
     }
   }, [isLoggedIn]);
+
   return (
     <>
       {!isLoggedIn ? (

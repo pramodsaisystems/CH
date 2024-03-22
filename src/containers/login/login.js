@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Button, Card, Form, Input, Row, Col } from "antd";
-import { useDispatch, useSelector } from "react-redux";
-import { login, updateLogin } from "./actions";
-import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { updateLogin } from "./actions";
 
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import "./login.css";
@@ -10,16 +9,12 @@ import loginImg from "../../images/vector.jpg";
 
 const Login = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   //get data from redux store
 
   const onFinish = (values) => {
     dispatch(updateLogin(true));
   };
 
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-  };
   return (
     <div>
       <div className="login-form">

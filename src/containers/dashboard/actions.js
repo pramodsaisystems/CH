@@ -5,6 +5,15 @@ import {
   GET_NO_OF_CLAIMS,
   GET_NO_OF_CLAIMS_FAIL,
   GET_NO_OF_CLAIMS_SUCCESS,
+  GET_NO_OF_PATIENTS,
+  GET_NO_OF_PATIENTS_SUCCESS,
+  GET_NO_OF_PATIENTS_FAIL,
+  GET_STATUS,
+  GET_STATUS_SUCCESS,
+  GET_STATUS_FAIL,
+  GET_CLAIMS_BY_PROVIDER,
+  GET_CLAIMS_BY_PROVIDER_SUCCESS,
+  GET_CLAIMS_BY_PROVIDER_FAIL,
 } from "./constants";
 
 export const getData = () => ({
@@ -32,5 +41,47 @@ export const getNoOfClaimsSuccess = (data) => ({
 
 export const getNoOfClaimsFail = (data) => ({
   type: GET_NO_OF_CLAIMS_FAIL,
+  data,
+});
+
+export const getNoOfPatients = () => ({
+  type: GET_NO_OF_PATIENTS,
+});
+
+export const getNoOfPatientsSuccess = (data) => ({
+  type: GET_NO_OF_PATIENTS_SUCCESS,
+  data,
+});
+
+export const getNoOfPatientsFail = (data) => ({
+  type: GET_NO_OF_PATIENTS_FAIL,
+  data,
+});
+
+export const getStatus = () => ({
+  type: GET_STATUS,
+});
+
+export const getStatusSuccess = (data) => ({
+  type: GET_STATUS_SUCCESS,
+  data,
+});
+
+export const getStatusFail = (data) => ({
+  type: GET_STATUS_FAIL,
+  data,
+});
+
+export const getClaimsByProvider = () => ({
+  type: GET_CLAIMS_BY_PROVIDER,
+});
+
+export const getClaimsByProviderSuccess = (data) => ({
+  type: GET_CLAIMS_BY_PROVIDER_SUCCESS,
+  data,
+});
+
+export const getClaimsByProviderFail = (data) => ({
+  type: GET_CLAIMS_BY_PROVIDER_FAIL,
   data,
 });

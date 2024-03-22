@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Column, DualAxes, Pie } from "@ant-design/plots";
-import { Row, Col, Card, Space } from "antd";
+import { Row, Col, Card } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import {
   // data1,
@@ -10,7 +10,7 @@ import {
   transformData,
   transformData1,
 } from "./data";
-import { getData, getNoOfClaims } from "./actions";
+import { getNoOfClaims } from "./actions";
 
 const Dashboard = () => {
   // user to invoke redux actions

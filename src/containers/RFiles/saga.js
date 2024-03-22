@@ -6,7 +6,6 @@ import {
   getF837Fail,
   getF835Success,
   getF835Fail,
-  getAck,
   getAckFail,
   getAckSuccess,
 } from "./actions";
