@@ -27,7 +27,7 @@ const ACKFile = ({ ack = [], loading = false }) => {
   const getDate = function (row) {
     return getTimezoneDateTime(
       moment(row?.lastUpdated).format("YYYY-MM-DD HH:MM:SS"),
-      "MM/DD/YYYY hh:mm"
+      "MM/DD/YYYY hh:mm a"
     );
   };
 

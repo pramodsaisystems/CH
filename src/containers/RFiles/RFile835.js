@@ -7,7 +7,7 @@ const RFile835 = ({ f835 = [], loading = false }) => {
   const getDate = function (row) {
     return getTimezoneDateTime(
       moment(row?.date).format("YYYY-MM-DD HH:MM:SS"),
-      "MM/DD/YYYY" + " / " + "hh:mm"
+      "MM/DD/YYYY hh:mm a"
     );
   };
 

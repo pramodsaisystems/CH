@@ -7,3 +7,8 @@ export const getTimezoneDateTime = (
   const systemTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
   return moment.utc(dateTime).tz(systemTimeZone).format(format);
 };
+
+export const getTimezoneDate = (dateTime, format = "MM/DD/YYYY") => {
+  const systemTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  return moment.utc(dateTime).tz(systemTimeZone).format(format);
+};

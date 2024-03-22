@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Table, Tag, Space, Button, Card } from "antd";
-import { getTimezoneDateTime } from "../../utils/helper";
+import { getTimezoneDateTime, getTimezoneDate } from "../../utils/helper";
 import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 import { getReport } from "./actions";
@@ -14,12 +14,17 @@ const Reports = () => {
     //Invoke action to call API for saga
     dispatch(getReport());
   }, [dispatch]);
-  const getDate = function (date) {
+  const getDateTime = function (date) {
     return getTimezoneDateTime(
       moment(date).format("YYYY-MM-DD HH:MM:SS"),
-      "MM/DD/YYYY" + " / " + "hh:mm"
+      "MM/DD/YYYY hh:mm a"
     );
   };
+
+  const getDate = function (date) {
+    return getTimezoneDate(moment(date).format("YYYY-MM-DD"), "MM/DD/YYYY");
+  };
+
   const columns = [
     {
       title: "Patient Name",
@@ -51,7 +56,7 @@ const Reports = () => {
       title: "Date / Time",
       dataIndex: "date",
       key: "date",
-      render: (text) => <div>{getDate(text)}</div>,
+      render: (text) => <div>{getDateTime(text)}</div>,
     },
 
     {
