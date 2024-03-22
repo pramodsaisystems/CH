@@ -58,83 +58,92 @@ const App = () => {
     setSelectedMenu(e?.key);
   };
   return (
-    <div className="App">
-      <Layout
-        style={{
-          minHeight: "100vh",
-        }}
-      >
-        <Sider
-          collapsible
-          collapsed={collapsed}
-          onCollapse={(value) => setCollapsed(value)}
-        >
-          <div className="demo-logo-vertical" style={{ height: "64px" }}></div>
-          <Menu
-            theme="dark"
-            defaultSelectedKeys={[selectedMenu]}
-            mode="inline"
-            items={items}
-            style={{ textAlign: "left" }}
-            onClick={(e) => {
-              onMenuClick(e);
-            }}
-          />
-        </Sider>
-        <Layout>
-          <Header
+    <>
+      {!isLoggedIn ? (
+        <div className="login-container">
+          <Routes>
+            <Route path="/" exact element={<Login />} />
+          </Routes>
+        </div>
+      ) : (
+        <div div className="App">
+          <Layout
             style={{
-              padding: 0,
-              background: colorBgContainer,
-              textAlign: "left",
+              minHeight: "100vh",
             }}
           >
-            <div
-              style={{
-                fontWeight: "600",
-                fontSize: "24px",
-                paddingLeft: "12px",
-              }}
+            <Sider
+              collapsible
+              collapsed={collapsed}
+              onCollapse={(value) => setCollapsed(value)}
             >
-              Clearing House
-            </div>
-          </Header>
-          <Content
-            style={{
-              margin: "8px 16px",
-            }}
-          >
-            {/* <div
-              style={{
-                padding: 24,
-                maxHeight: "calc(100vh - 152px)",
+              <div
+                className="demo-logo-vertical"
+                style={{ height: "64px" }}
+              ></div>
+              <Menu
+                theme="dark"
+                defaultSelectedKeys={[selectedMenu]}
+                mode="inline"
+                style={{ textAlign: "left" }}
+                items={items}
+                onClick={(e) => {
+                  onMenuClick(e);
+                }}
+              />
+            </Sider>
+            <Layout>
+              <Header
+                style={{
+                  padding: 0,
+                  background: colorBgContainer,
+                  textAlign: "left",
+                }}
+              >
+                <div
+                  style={{
+                    fontWeight: "600",
+                    fontSize: "24px",
+                    paddingLeft: "12px",
+                  }}
+                >
+                  Clearing House
+                </div>
+              </Header>
+              <Content
+                style={{
+                  margin: "8px 16px",
+                }}
+              >
+                <div
+                  style={{
+                    padding: 24,
+                    maxHeight: "calc(100vh - 152px)",
 
-                overflow: "auto",
-                borderRadius: borderRadiusLG,
-              }}
-            > */}
-            <Routes>
-              <Route path="/" exact element={<Login />} />
-              <Route path="/dashboard" exact element={<Dashboard />} />
-              <Route path="*" element={<NotFound />} />
-              <Route path="/files" element={<RFiles />} />
-              <Route path="/report" element={<Reports />} />
-
-              {/* <Route path="/reports/claim" element={<ClaimReport />} />
-              <Route path="/reports/patients" element={<PatientReport />} /> */}
-            </Routes>
-            {/* </div> */}
-          </Content>
-          <Footer
-            style={{
-              textAlign: "center",
-            }}
-          >
-            Clearing House ©{new Date().getFullYear()}
-          </Footer>
-        </Layout>
-      </Layout>
-    </div>
+                    overflow: "auto",
+                    borderRadius: borderRadiusLG,
+                  }}
+                >
+                  <Routes>
+                    <Route path="/" exact element={<Dashboard />} />
+                    <Route path="*" element={<NotFound />} />
+                    <Route path="/RFDetails" element={<RFiles />} />
+                    <Route path="/report" element={<Reports />} />
+                  </Routes>
+                </div>
+              </Content>
+              <Footer
+                style={{
+                  textAlign: "center",
+                }}
+              >
+                Clearing House ©{new Date().getFullYear()}
+              </Footer>
+            </Layout>
+          </Layout>
+        </div>
+      )}
+    </>
   );
 };
 
