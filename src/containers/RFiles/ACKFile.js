@@ -45,7 +45,7 @@ const ACKFile = () => {
       title: "Type",
       dataIndex: "type",
       key: "type",
-      render: (text, rec) => <div></div>,
+      render: (text, rec) => <div>txt</div>,
     },
     {
       title: "Datetime",
@@ -70,7 +70,7 @@ const ACKFile = () => {
   return (
     <div>
       {" "}
-      <Table columns={columns} dataSource={data} />
+      <Table columns={columns} dataSource={data} bordered />
     </div>
   );
 };

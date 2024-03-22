@@ -36,3 +36,10 @@
     transform: rotate(360deg);
   }
 }
+.App-container{
+  padding: 24;
+  /* maxHeight: calc(100vh - 152px); */
+ background: colorBgContainer;
+  overflow: auto;
+  /* borderRadius: borderRadiusLG; */
+}

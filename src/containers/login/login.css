@@ -1,0 +1,30 @@
+.login-card{
+    width:50% !important;
+    height:50% !important
+}
+.login-form{
+border: none;
+margin-left: 37%;
+margin-top :15%;
+
+}
+
+.login-label{
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+.login-btn{
+    background-color: #0A66C2;
+    border-radius: 5px;
+    color: white;
+}
+
+.ant-card .ant-card-head-title {
+    display: inline-block;
+    flex: none !important;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 25px;
+}
