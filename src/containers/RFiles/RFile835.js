@@ -67,7 +67,7 @@ const RFile835 = () => {
   return (
     <div>
       {" "}
-      <Table columns={columns} dataSource={data} />
+      <Table columns={columns} dataSource={data} bordered />
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
 import Dashboard from "./containers/dashboard/dashboard";
 import NotFound from "./containers/notfound/notfound";
 import RFiles from "./containers/RFiles/RFiles";
@@ -11,11 +11,11 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu, theme } from "antd";
-import { useNavigate } from "react-router-dom";
-
+import Login from "./containers/login/login";
 import "./App.css";
 import ClaimReport from "./containers/reports/claimReport";
 import PatientReport from "./containers/reports/patientReports";
+import { useSelector } from "react-redux";
 const { Header, Content, Footer, Sider } = Layout;
 function getItem(label, key, icon, children) {
   return {
@@ -26,7 +26,8 @@ function getItem(label, key, icon, children) {
   };
 }
 const items = [
-  getItem("Dashboard", "/", <PieChartOutlined />),
+  getItem("Login", "/", <PieChartOutlined />),
+  getItem("Dashboard", "/dashboard", <PieChartOutlined />),
   getItem("RF", "RFDetails", <DesktopOutlined />),
   // getItem(
   //   "835",
@@ -53,6 +54,8 @@ const App = () => {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
+  const isLoggedIn = useSelector((state) => state.loginReducer?.loggedIn);
+  console.log(isLoggedIn);
   const onMenuClick = (e) => {
     navigate(e?.key);
     setSelectedMenu(e?.key);
@@ -103,7 +106,7 @@ const App = () => {
               margin: "8px 16px",
             }}
           >
-            <div
+            {/* <div
               style={{
                 padding: 24,
                 maxHeight: "calc(100vh - 152px)",
@@ -111,15 +114,16 @@ const App = () => {
                 overflow: "auto",
                 borderRadius: borderRadiusLG,
               }}
-            >
-              <Routes>
-                <Route path="/" exact element={<Dashboard />} />
-                <Route path="*" element={<NotFound />} />
-                <Route path="/RFDetails" element={<RFiles />} />
-                <Route path="/reports/claim" element={<ClaimReport />} />
-                <Route path="/reports/patients" element={<PatientReport />} />
-              </Routes>
-            </div>
+            > */}
+            <Routes>
+              <Route path="/" exact element={<Login />} />
+              <Route path="/dashboard" exact element={<Dashboard />} />
+              <Route path="*" element={<NotFound />} />
+              <Route path="/RFDetails" element={<RFiles />} />
+              <Route path="/reports/claim" element={<ClaimReport />} />
+              <Route path="/reports/patients" element={<PatientReport />} />
+            </Routes>
+            {/* </div> */}
           </Content>
           <Footer
             style={{

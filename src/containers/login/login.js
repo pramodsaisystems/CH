@@ -1,76 +1,101 @@
-import React from "react";
-import { Button, Checkbox, Form, Input } from "antd";
+import React, { useEffect } from "react";
+import { Button, Card, Form, Input, Row, Col } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import { login, updateLogin } from "./actions";
+import { useNavigate } from "react-router-dom";
 
-const onFinish = (values) => {
-  localStorage.setItem("login", true);
-};
-const onFinishFailed = (errorInfo) => {
-  console.log("Failed:", errorInfo);
-};
-const App = () => (
-  <Form
-    name="basic"
-    labelCol={{
-      span: 8,
-    }}
-    wrapperCol={{
-      span: 16,
-    }}
-    style={{
-      maxWidth: 600,
-    }}
-    initialValues={{
-      remember: true,
-    }}
-    onFinish={onFinish}
-    onFinishFailed={onFinishFailed}
-    autoComplete="off"
-  >
-    <Form.Item
-      label="Username"
-      name="username"
-      rules={[
-        {
-          required: true,
-          message: "Please input your username!",
-        },
-      ]}
-    >
-      <Input />
-    </Form.Item>
+import { LockOutlined, UserOutlined } from "@ant-design/icons";
+import "./login.css";
 
-    <Form.Item
-      label="Password"
-      name="password"
-      rules={[
-        {
-          required: true,
-          message: "Please input your password!",
-        },
-      ]}
-    >
-      <Input.Password />
-    </Form.Item>
+const Login = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  //get data from redux store
+  const loginDetails = useSelector((state) => state.loginReducer?.loggedIn);
 
-    <Form.Item
-      name="remember"
-      valuePropName="checked"
-      wrapperCol={{
-        offset: 8,
-        span: 16,
-      }}
-    ></Form.Item>
+  const onFinish = (values) => {
+    debugger;
+    // history.navigate("/dashboard");
+    dispatch(updateLogin(true));
+  };
+  useEffect(() => {
+    if (loginDetails) {
+      navigate("/dashboard");
+    }
+  }, [loginDetails]);
 
-    <Form.Item
-      wrapperCol={{
-        offset: 8,
-        span: 16,
+  const onFinishFailed = (errorInfo) => {
+    console.log("Failed:", errorInfo);
+  };
+  return (
+    <Card
+      title="Sign in"
+      className="login-form"
+      style={{
+        width: 500,
       }}
     >
-      <Button type="primary" htmlType="submit">
-        Submit
-      </Button>
-    </Form.Item>
-  </Form>
-);
-export default App;
+      {" "}
+      <Form
+        name="normal_login"
+        className=""
+        initialValues={{
+          remember: true,
+        }}
+        onFinish={onFinish}
+      >
+        <Row className="login-label">
+          <Col>Email</Col>
+        </Row>
+        <Form.Item
+          name="email"
+          rules={[
+            {
+              required: true,
+              message: "Please enter email",
+            },
+          ]}
+        >
+          <Input
+            prefix={<UserOutlined className="site-form-item-icon" />}
+            placeholder="Email"
+            // style={{ borderColor: "black" }}
+          />
+        </Form.Item>
+        <Row className="login-label">
+          <Col>Password</Col>
+        </Row>
+        <Form.Item
+          name="password"
+          rules={[
+            {
+              required: true,
+              message: "Please enter Password",
+            },
+          ]}
+        >
+          <Input
+            prefix={<LockOutlined className="site-form-item-icon" />}
+            type="password"
+            placeholder="Password"
+            // style={{ borderColor: "black" }}
+          />
+        </Form.Item>
+
+        <Form.Item>
+          <Button
+            type="secondary"
+            htmlType="submit"
+            className="login-btn"
+            style={{ color: "white" }}
+            size="large"
+          >
+            Sign in
+          </Button>
+          {/* Or <a href="">register now!</a> */}
+        </Form.Item>
+      </Form>
+    </Card>
+  );
+};
+export default Login;
