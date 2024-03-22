@@ -3,9 +3,21 @@
     height:50% !important
 }
 .login-form{
-border: none;
-margin-left: 37%;
-margin-top :15%;
+    vertical-align: middle;
+    margin:0 auto;
+    margin-top:30px;
+    border: 1px;
+}
+
+.login-page-header{
+font-family: Lato;
+font-size: 38px;
+font-weight: 500;
+line-height: 46px;
+text-align: center;
+color: #1169AF;
+
+padding-top: 10%;
 
 }
 
@@ -18,6 +30,7 @@ margin-top :15%;
     background-color: #0A66C2;
     border-radius: 5px;
     color: white;
+    margin-top: 15px;
 }
 
 .ant-card .ant-card-head-title {
@@ -28,3 +41,10 @@ margin-top :15%;
     text-overflow: ellipsis;
     font-size: 25px;
 }
+
+.responsive-image {
+    max-width: 100%; 
+    height: auto;
+    display: block;
+    margin-bottom: 25px;
+  }
