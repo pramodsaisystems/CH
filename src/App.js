@@ -85,9 +85,18 @@ const App = () => {
             style={{
               padding: 0,
               background: colorBgContainer,
+              textAlign: "left",
             }}
           >
-            Clearing House
+            <div
+              style={{
+                fontWeight: "600",
+                fontSize: "24px",
+                paddingLeft: "12px",
+              }}
+            >
+              Clearing House
+            </div>
           </Header>
           <Content
             style={{
@@ -98,7 +107,7 @@ const App = () => {
               style={{
                 padding: 24,
                 maxHeight: "calc(100vh - 152px)",
-                background: colorBgContainer,
+
                 overflow: "auto",
                 borderRadius: borderRadiusLG,
               }}

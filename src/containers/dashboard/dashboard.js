@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Column, DualAxes, Pie } from "@ant-design/plots";
-import { Row, Col } from "antd";
+import { Row, Col, Card, Space } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import {
   // data1,
@@ -10,7 +10,7 @@ import {
   transformData,
   transformData1,
 } from "./data";
-import { getData } from "./actions";
+import { getData, getNoOfClaims } from "./actions";
 
 const Dashboard = () => {
   // user to invoke redux actions
@@ -18,16 +18,21 @@ const Dashboard = () => {
   //get data from redux store
   const data1 = useSelector((state) => state.dashboardReducer.data);
   useEffect(() => {
+    debugger;
     //Invoke action to call API for saga
-    dispatch(getData());
+    dispatch(getNoOfClaims());
   }, [dispatch]);
   const config = {
     data: data1,
     xField: "type",
     yField: "claim",
-    fill: ({ type }) => {
-      return "#2989FF";
+    // shapeField: "column25D",
+    style: {
+      fill: "#22CBCC",
     },
+    // fill: () => {
+    //   return "#22CBCC";
+    // },
     label: {
       text: (originData) => {
         const val = parseFloat(originData.claim);
@@ -46,8 +51,8 @@ const Dashboard = () => {
     data: data2,
     xField: "type",
     yField: "patients",
-    fill: ({ type }) => {
-      return "#2989FF";
+    style: {
+      fill: "#FFA500",
     },
     label: {
       text: (originData) => {
@@ -178,7 +183,7 @@ const Dashboard = () => {
         return `${patients}: ${parseInt(percentage * 100)}%`;
       },
       fill: "#fff",
-      fontSize: 18,
+      fontSize: 12,
     },
     style: {
       padding: 10,
@@ -193,41 +198,41 @@ const Dashboard = () => {
 
   return (
     <div>
-      <Row>
+      <h2 style={{ textAlign: "left" }}>Dashboard</h2>
+
+      <Row gutter={[8, 8]}>
+        <Col span={8}>
+          <Card hoverable>
+            <h2>No. of Claims</h2>
+            <Column height={200} width={300} {...config}></Column>
+          </Card>
+        </Col>
+        <Col span={8}>
+          <Card hoverable>
+            <h2>No. of Patients</h2>
+            <Column height={200} width={300} {...config1}></Column>
+          </Card>
+        </Col>
+
+        <Col span={8}>
+          <Card hoverable>
+            {/* <h2 style={{ visibility: "hidden" }}> Patients</h2> */}
+            <Pie height={267} width={300} {...config4}></Pie>
+          </Card>
+        </Col>
+
         <Col span={12}>
-          <h2>No. of Claims</h2>
-          <Column height={250} width={450} {...config}></Column>
+          <Card hoverable>
+            <h2>No. of Claims by Provider</h2>
+            <DualAxes height={250} width={550} {...config2} />
+          </Card>
         </Col>
         <Col span={12}>
-          <h2>No. of Patients</h2>
-          <Column height={250} width={450} {...config1}></Column>
+          <Card hoverable>
+            <h2>No. of Claims by Payer</h2>
+            <DualAxes height={250} width={550} {...config3} />
+          </Card>
         </Col>
-        <Col span={24}>
-          <Row>
-            <Col span={12}>
-              <Col span={24}>
-                <h2>Claims by Provider</h2>
-                <DualAxes height={250} width={550} {...config2} />
-              </Col>
-              <Col span={24}>
-                <h2>Claims by Payer</h2>
-                <DualAxes height={250} width={550} {...config3} />
-              </Col>
-            </Col>
-            <Col
-              span={12}
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                textAlign: "center",
-              }}
-            >
-              <Pie {...config4}></Pie>
-            </Col>
-          </Row>
-        </Col>
-        <Col span={12}></Col>
       </Row>
     </div>
   );
