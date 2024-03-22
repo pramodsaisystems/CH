@@ -15,6 +15,7 @@ import Login from "./containers/login/login";
 import "./App.css";
 import ClaimReport from "./containers/reports/claimReport";
 import PatientReport from "./containers/reports/patientReports";
+import Reports from "./containers/reports/reports";
 import { useSelector } from "react-redux";
 const { Header, Content, Footer, Sider } = Layout;
 function getItem(label, key, icon, children) {
@@ -26,9 +27,8 @@ function getItem(label, key, icon, children) {
   };
 }
 const items = [
-  getItem("Login", "/", <PieChartOutlined />),
   getItem("Dashboard", "/dashboard", <PieChartOutlined />),
-  getItem("RF", "RFDetails", <DesktopOutlined />),
+  getItem("Files", "/files", <DesktopOutlined />),
   // getItem(
   //   "835",
   //   "sub1",
@@ -40,10 +40,7 @@ const items = [
   //   // ]
   // ),
   // getItem("Ack", "9", <FileOutlined />),
-  getItem("Report", "sub2", <TeamOutlined />, [
-    getItem("Claim", "reports/claim"),
-    getItem("Patients", "reports/patients"),
-  ]),
+  getItem("Report", "report", <TeamOutlined />),
 ];
 
 const App = () => {
@@ -78,6 +75,7 @@ const App = () => {
             defaultSelectedKeys={[selectedMenu]}
             mode="inline"
             items={items}
+            style={{ textAlign: "left" }}
             onClick={(e) => {
               onMenuClick(e);
             }}
@@ -119,9 +117,11 @@ const App = () => {
               <Route path="/" exact element={<Login />} />
               <Route path="/dashboard" exact element={<Dashboard />} />
               <Route path="*" element={<NotFound />} />
-              <Route path="/RFDetails" element={<RFiles />} />
-              <Route path="/reports/claim" element={<ClaimReport />} />
-              <Route path="/reports/patients" element={<PatientReport />} />
+              <Route path="/files" element={<RFiles />} />
+              <Route path="/report" element={<Reports />} />
+
+              {/* <Route path="/reports/claim" element={<ClaimReport />} />
+              <Route path="/reports/patients" element={<PatientReport />} /> */}
             </Routes>
             {/* </div> */}
           </Content>

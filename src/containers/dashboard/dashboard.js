@@ -18,7 +18,6 @@ const Dashboard = () => {
   //get data from redux store
   const data1 = useSelector((state) => state.dashboardReducer.data);
   useEffect(() => {
-    debugger;
     //Invoke action to call API for saga
     dispatch(getNoOfClaims());
   }, [dispatch]);
@@ -158,16 +157,6 @@ const Dashboard = () => {
         },
       },
     ],
-    theme: {
-      category10: [
-        "#F4A49E",
-        "#FACDAA",
-        "#EE7B91",
-        "#E85285",
-        "#BE408C",
-        "#BE408C",
-      ],
-    },
   };
 
   const config4 = {

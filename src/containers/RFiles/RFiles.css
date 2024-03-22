@@ -1,0 +1,10 @@
+.files-cont {
+    .tab-title {
+        font-weight: 600;
+        font-size: 18px;
+        padding: 4px 16px;
+    }
+
+    .ant-table-thead .ant-table-cell {}
+
+}

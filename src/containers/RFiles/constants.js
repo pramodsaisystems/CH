@@ -1,0 +1,9 @@
+export const GET_F837 = "GET_F837";
+export const GET_F837_SUCCESS = "GET_F837_SUCCESS";
+export const GET_F837_FAIL = "GET_F837_FAIL";
+export const GET_F835 = "GET_F835";
+export const GET_F835_SUCCESS = "GET_F835_SUCCESS";
+export const GET_F835_FAIL = "GET_F835_FAIL";
+export const GET_ACK = "GET_ACK";
+export const GET_ACK_SUCCESS = "GET_ACK_SUCCESS";
+export const GET_ACK_FAIL = "GET_ACK_FAIL";

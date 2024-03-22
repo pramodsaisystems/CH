@@ -46,16 +46,16 @@ export const uvBillData1 = [
   { time: "02-05", value: 270, type: "accepted" },
   { time: "04-06", value: 430, type: "accepted" },
   { time: "03-07", value: 389, type: "accepted" },
-  { time: "02-03", value: 180, type: "rejected" },
-  { time: "03-04", value: 240, type: "rejected" },
-  { time: "02-05", value: 200, type: "rejected" },
-  { time: "04-06", value: 172, type: "rejected" },
-  { time: "03-07", value: 306, type: "rejected" },
   { time: "02-03", value: 95, type: "pending" },
   { time: "03-04", value: 116, type: "pending" },
   { time: "02-05", value: 85, type: "pending" },
   { time: "04-06", value: 50, type: "pending" },
   { time: "03-07", value: 169, type: "pending" },
+  { time: "02-03", value: 180, type: "rejected" },
+  { time: "03-04", value: 240, type: "rejected" },
+  { time: "02-05", value: 200, type: "rejected" },
+  { time: "04-06", value: 172, type: "rejected" },
+  { time: "03-07", value: 306, type: "rejected" },
 ];
 
 export const transformData1 = [

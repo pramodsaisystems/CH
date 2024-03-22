@@ -28,7 +28,6 @@ function* getNoOfClaimsData() {
       return result;
     })
     .catch(() => console.error());
-  debugger;
   if (data && data.status === 200) {
     const data = yield JSON.parse(data.data);
     yield put(getNoOfClaimsSuccess(data));

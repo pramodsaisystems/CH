@@ -1,9 +1,19 @@
-import React from "react";
-import { Table, Tag, Space, Button } from "antd";
+import React, { useEffect } from "react";
+import { Table, Tag, Space, Button, Card } from "antd";
 import { getTimezoneDateTime } from "../../utils/helper";
 import moment from "moment";
+import { useDispatch, useSelector } from "react-redux";
+import { getReport } from "./actions";
 
-const RFile837 = ({ f837 = [], loading = false }) => {
+const Reports = () => {
+  const dispatch = useDispatch();
+  const reports = useSelector((state) => state.reportReducer.reports);
+  const loading = useSelector((state) => state.reportReducer.loading);
+
+  useEffect(() => {
+    //Invoke action to call API for saga
+    dispatch(getReport());
+  }, [dispatch]);
   const getDate = function (row) {
     return getTimezoneDateTime(
       moment(row?.date).format("YYYY-MM-DD HH:MM:SS"),
@@ -62,16 +72,18 @@ const RFile837 = ({ f837 = [], loading = false }) => {
 
   return (
     <div>
-      {" "}
-      <Table
-        columns={columns}
-        dataSource={f837}
-        pagination={{ defaultPageSize: "5" }}
-        bordered
-        loading={loading}
-      />
+      <Card>
+        <h2 style={{ textAlign: "left" }}>Reports</h2>{" "}
+        <Table
+          columns={columns}
+          dataSource={reports}
+          pagination={{ defaultPageSize: "5" }}
+          bordered
+          loading={loading}
+        />
+      </Card>
     </div>
   );
 };
 
-export default RFile837;
+export default Reports;

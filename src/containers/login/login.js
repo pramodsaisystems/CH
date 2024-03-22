@@ -14,7 +14,6 @@ const Login = () => {
   const loginDetails = useSelector((state) => state.loginReducer?.loggedIn);
 
   const onFinish = (values) => {
-    debugger;
     // history.navigate("/dashboard");
     dispatch(updateLogin(true));
   };
