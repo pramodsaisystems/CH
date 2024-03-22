@@ -1,6 +1,6 @@
 import React from "react";
 import { Table } from "antd";
-import { getTimezoneDateTime } from "../../helper";
+import { getTimezoneDateTime } from "../../utils/helper";
 import moment from "moment";
 
 const ACKFile = () => {

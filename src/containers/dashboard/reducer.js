@@ -1,6 +1,13 @@
 import produce from "immer";
 
-import { GET_DATA, GET_DATA_SUCCESS, GET_DATA_FAIL } from "./constants";
+import {
+  GET_DATA,
+  GET_DATA_SUCCESS,
+  GET_DATA_FAIL,
+  GET_NO_OF_CLAIMS,
+  GET_NO_OF_CLAIMS_SUCCESS,
+  GET_NO_OF_CLAIMS_FAIL,
+} from "./constants";
 
 const initialState = {
   loading: false,
@@ -11,6 +18,7 @@ const initialState = {
     { type: "04/06", claim: 5000 },
     { type: "02/07", claim: 13500 },
   ],
+  noOfClaims: [],
 };
 
 const dashboardReducer = (state = initialState, action) =>
@@ -21,9 +29,20 @@ const dashboardReducer = (state = initialState, action) =>
         break;
       case GET_DATA_SUCCESS:
         draft.loading = false;
-        draft.newsData = action.data;
+        draft.data = action.data;
         break;
       case GET_DATA_FAIL:
+        draft.loading = false;
+        break;
+      case GET_NO_OF_CLAIMS:
+        draft.loading = true;
+        draft.noOfClaims = [];
+        break;
+      case GET_NO_OF_CLAIMS_SUCCESS:
+        draft.loading = false;
+        draft.noOfClaims = action.data;
+        break;
+      case GET_NO_OF_CLAIMS_FAIL:
         draft.loading = false;
         break;
       default:

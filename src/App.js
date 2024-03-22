@@ -60,7 +60,6 @@ const App = () => {
   } = theme.useToken();
 
   const isLoggedIn = useSelector((state) => state.loginReducer?.loggedIn);
-  debugger;
   console.log(isLoggedIn);
   const onMenuClick = (e) => {
     navigate(e?.key);
@@ -73,38 +72,40 @@ const App = () => {
           minHeight: "100vh",
         }}
       >
-        {isLoggedIn && (
-          <Sider
-            collapsible
-            collapsed={collapsed}
-            onCollapse={(value) => setCollapsed(value)}
+        <Sider
+          collapsible
+          collapsed={collapsed}
+          onCollapse={(value) => setCollapsed(value)}
+        >
+          <div className="demo-logo-vertical" style={{ height: "64px" }}></div>
+          <Menu
+            theme="dark"
+            defaultSelectedKeys={[selectedMenu]}
+            mode="inline"
+            items={items}
+            onClick={(e) => {
+              onMenuClick(e);
+            }}
+          />
+        </Sider>
+        <Layout>
+          <Header
+            style={{
+              padding: 0,
+              background: colorBgContainer,
+              textAlign: "left",
+            }}
           >
             <div
-              className="demo-logo-vertical"
-              style={{ height: "64px" }}
-            ></div>
-            <Menu
-              theme="dark"
-              defaultSelectedKeys={[selectedMenu]}
-              mode="inline"
-              items={items}
-              onClick={(e) => {
-                onMenuClick(e);
-              }}
-            />
-          </Sider>
-        )}
-        <Layout>
-          {isLoggedIn && (
-            <Header
               style={{
-                padding: 0,
-                background: colorBgContainer,
+                fontWeight: "600",
+                fontSize: "24px",
+                paddingLeft: "12px",
               }}
             >
               Clearing House
-            </Header>
-          )}
+            </div>
+          </Header>
           <Content
             style={{
               margin: "8px 16px",
@@ -114,7 +115,7 @@ const App = () => {
               style={{
                 padding: 24,
                 maxHeight: "calc(100vh - 152px)",
-                background: colorBgContainer,
+
                 overflow: "auto",
                 borderRadius: borderRadiusLG,
               }}
