@@ -12,13 +12,13 @@ const ACKFile = ({ ack = [], loading = false }) => {
       render: (text, rec) => <div>txt</div>,
     },
     {
-      title: "Datetime",
+      title: "Date / Time",
       dataIndex: "date",
       key: "date",
       render: (text, rec) => <div>{getDate(rec)}</div>,
     },
     {
-      title: "FileName",
+      title: "File Name",
       dataIndex: "FileName",
       key: "FileName",
     },

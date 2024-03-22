@@ -1,22 +1,23 @@
-import React, { useState } from "react";
-import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
+import React, { useState, useEffect, useDebugValue } from "react";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Dashboard from "./containers/dashboard/dashboard";
 import NotFound from "./containers/notfound/notfound";
 import RFiles from "./containers/RFiles/RFiles";
 import {
-  DesktopOutlined,
   FileOutlined,
-  PieChartOutlined,
-  TeamOutlined,
-  UserOutlined,
+  LogoutOutlined,
+  DashboardOutlined,
+  DesktopOutlined,
 } from "@ant-design/icons";
-import { Layout, Menu, theme } from "antd";
+import { Layout, Menu, theme, Row, Col } from "antd";
 import Login from "./containers/login/login";
-import "./App.css";
-import ClaimReport from "./containers/reports/claimReport";
-import PatientReport from "./containers/reports/patientReports";
+
 import Reports from "./containers/reports/reports";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { updateLogin } from "./containers/login/actions";
+import { UseDispatch } from "react-redux";
+import "./App.css";
+
 const { Header, Content, Footer, Sider } = Layout;
 function getItem(label, key, icon, children) {
   return {
@@ -27,8 +28,8 @@ function getItem(label, key, icon, children) {
   };
 }
 const items = [
-  getItem("Dashboard", "/dashboard", <PieChartOutlined />),
-  getItem("Files", "/files", <DesktopOutlined />),
+  getItem("Dashboard", "/dashboard", <DashboardOutlined />),
+  getItem("Files", "/files", <FileOutlined />),
   // getItem(
   //   "835",
   //   "sub1",
@@ -40,13 +41,14 @@ const items = [
   //   // ]
   // ),
   // getItem("Ack", "9", <FileOutlined />),
-  getItem("Report", "report", <TeamOutlined />),
+  getItem("Reports", "reports", <DesktopOutlined />),
 ];
 
 const App = () => {
   const [collapsed, setCollapsed] = useState(false);
   const [selectedMenu, setSelectedMenu] = useState("/");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
@@ -57,6 +59,19 @@ const App = () => {
     navigate(e?.key);
     setSelectedMenu(e?.key);
   };
+
+  const onLogout = (values) => {
+    debugger;
+    dispatch(updateLogin(false));
+  };
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/dashboard");
+    } else {
+      navigate("/");
+    }
+  }, [isLoggedIn]);
   return (
     <>
       {!isLoggedIn ? (
@@ -102,13 +117,30 @@ const App = () => {
               >
                 <div
                   style={{
-                    fontWeight: "600",
-                    fontSize: "24px",
-                    paddingLeft: "12px",
+                    padding: "0px 12px",
                   }}
                 >
-                  Clearing House
+                  <Row>
+                    <Col
+                      span={20}
+                      style={{ fontWeight: "600", fontSize: "24px" }}
+                    >
+                      Clearing House
+                    </Col>
+                    <Col
+                      span={4}
+                      style={{
+                        textAlign: "end",
+                        fontWeight: "600",
+                        fontSize: "24px",
+                      }}
+                    >
+                      <LogoutOutlined onClick={() => onLogout()} />
+                    </Col>
+                  </Row>
                 </div>
+
+                <></>
               </Header>
               <Content
                 style={{
@@ -125,10 +157,10 @@ const App = () => {
                   }}
                 >
                   <Routes>
-                    <Route path="/" exact element={<Dashboard />} />
+                    <Route path="/dashboard" exact element={<Dashboard />} />
                     <Route path="*" element={<NotFound />} />
-                    <Route path="/RFDetails" element={<RFiles />} />
-                    <Route path="/report" element={<Reports />} />
+                    <Route path="/files" element={<RFiles />} />
+                    <Route path="/reports" element={<Reports />} />
                   </Routes>
                 </div>
               </Content>

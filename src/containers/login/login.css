@@ -1,32 +1,19 @@
-.login-card{
-    width:50% !important;
-    height:50% !important
-}
-.login-form{
-    vertical-align: middle;
-    margin:0 auto;
-    margin-top:30px;
-    border: 1px;
+.login-form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-.login-page-header{
-font-family: Lato;
-font-size: 38px;
-font-weight: 500;
-line-height: 46px;
-text-align: center;
-color: #1169AF;
 
-padding-top: 10%;
 
-}
-
-.login-label{
+.login-label {
     font-size: 16px;
     font-weight: 500;
     margin-bottom: 5px;
 }
-.login-btn{
+
+.login-btn {
     background-color: #0A66C2;
     border-radius: 5px;
     color: white;
@@ -43,8 +30,8 @@ padding-top: 10%;
 }
 
 .responsive-image {
-    max-width: 100%; 
+    max-width: 100%;
     height: auto;
     display: block;
     margin-bottom: 25px;
-  }
+}

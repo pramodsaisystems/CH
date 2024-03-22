@@ -14,22 +14,48 @@ const Reports = () => {
     //Invoke action to call API for saga
     dispatch(getReport());
   }, [dispatch]);
-  const getDate = function (row) {
+  const getDate = function (date) {
     return getTimezoneDateTime(
-      moment(row?.date).format("YYYY-MM-DD HH:MM:SS"),
+      moment(date).format("YYYY-MM-DD HH:MM:SS"),
       "MM/DD/YYYY" + " / " + "hh:mm"
     );
   };
   const columns = [
     {
+      title: "Patient Name",
+      dataIndex: "PatientFirstName",
+      key: "PatientFirstName",
+      render: (text, rec) => (
+        <div>
+          {rec.PatientFirstName} {rec.PatientLastName}
+        </div>
+      ),
+    },
+    {
+      title: "Received Date",
+      dataIndex: "RecievedDate",
+      key: "RecievedDate",
+      render: (text) => <div>{getDate(text)}</div>,
+    },
+    {
+      title: "Provider Name",
+      dataIndex: "ProviderName",
+      key: "ProviderName",
+    },
+    {
+      title: "Payer Name",
+      dataIndex: "PayorName",
+      key: "PayorName",
+    },
+    {
       title: "Date / Time",
       dataIndex: "date",
       key: "date",
-      render: (text, rec) => <div>{getDate(rec)}</div>,
+      render: (text) => <div>{getDate(text)}</div>,
     },
 
     {
-      title: "FileName",
+      title: "File Name",
       dataIndex: "FileName",
       key: "FileName",
     },
@@ -55,18 +81,10 @@ const Reports = () => {
       ),
     },
     {
-      title: "Action",
-      key: "action",
-      render: (_, record) => (
-        <Space size="middle">
-          {record?.Status?.toLowerCase() === "completed" ||
-          record?.Status?.toLowerCase() === "processed" ? (
-            <div>{getDate(record.lastUpdated)}</div>
-          ) : (
-            <Button type="primary">Push</Button>
-          )}
-        </Space>
-      ),
+      title: "Last Updated",
+      dataIndex: "lastUpdated",
+      key: "lastUpdated",
+      render: (text) => <div>{getDate(text)}</div>,
     },
   ];
 

@@ -19,7 +19,7 @@ const RFile835 = ({ f835 = [], loading = false }) => {
       render: (text, rec) => <div>{getDate(rec)}</div>,
     },
     {
-      title: "FileName",
+      title: "File Name",
       dataIndex: "FileName",
       key: "FileName",
     },

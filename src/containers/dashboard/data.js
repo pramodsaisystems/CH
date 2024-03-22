@@ -8,10 +8,10 @@ export const data1 = [
 
 export const data2 = [
   { type: "02/03", patients: 45000 },
-  { type: "03/04", patients: 37000 },
+  { type: "03/04", patients: 15000 },
   { type: "02/05", patients: 41000 },
   { type: "04/06", patients: 10500 },
-  { type: "02/07", patients: 23500 },
+  { type: "02/07", patients: 40000 },
 ];
 
 export const uvBillData = [

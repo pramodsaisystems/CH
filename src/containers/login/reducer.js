@@ -26,7 +26,7 @@ const loginReducer = (state = initialState, action) =>
         draft.loading = false;
         break;
       case UPDATE_LOGIN:
-        draft.loggedIn = true;
+        draft.loggedIn = action.data;
         break;
       default:
         return draft;

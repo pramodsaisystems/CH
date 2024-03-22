@@ -19,7 +19,7 @@ const RFile837 = ({ f837 = [], loading = false }) => {
     },
 
     {
-      title: "FileName",
+      title: "File Name",
       dataIndex: "FileName",
       key: "FileName",
     },

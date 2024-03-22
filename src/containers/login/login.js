@@ -12,23 +12,16 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   //get data from redux store
-  const loginDetails = useSelector((state) => state.loginReducer?.loggedIn);
 
   const onFinish = (values) => {
     dispatch(updateLogin(true));
   };
-  useEffect(() => {
-    if (loginDetails) {
-      navigate("/dashboard");
-    }
-  }, [loginDetails]);
 
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
   return (
     <div>
-      <div className="login-page-header">Clearing House</div>
       <div className="login-form">
         <Card
           title=""
@@ -38,6 +31,12 @@ const Login = () => {
             padding: "38px",
           }}
         >
+          <div>
+            <h2>Hello Again!</h2>
+          </div>
+          <div>
+            <h4>Welcome back you've been missed!</h4>
+          </div>
           <img src={loginImg} alt="login-img" className="responsive-image" />{" "}
           <Form
             name="normal_login"
