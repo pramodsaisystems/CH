@@ -5,13 +5,16 @@ import NotFound from "./containers/notfound/notfound";
 import RFiles from "./containers/RFiles/RFiles";
 import {
   FileOutlined,
-  LogoutOutlined,
   DashboardOutlined,
   DesktopOutlined,
+  UserOutlined,
 } from "@ant-design/icons";
-import { Layout, Menu, theme, Row, Col } from "antd";
+import { Layout, Menu, theme, Row, Col, Avatar, Popconfirm } from "antd";
 import Login from "./containers/login/login";
 
+import ClaimReports from "./containers/reports/claimreports";
+import PatientReports from "./containers/reports/patientsreports";
+import PaymentReports from "./containers/reports/paymentreports";
 import Reports from "./containers/reports/reports";
 import { useDispatch, useSelector } from "react-redux";
 import { updateLogin } from "./containers/login/actions";
@@ -28,7 +31,7 @@ function getItem(label, key, icon, children) {
 }
 const items = [
   getItem("Dashboard", "/dashboard", <DashboardOutlined />),
-  getItem("Files", "/files", <FileOutlined />),
+  getItem("EDI Files", "/files", <FileOutlined />),
   // getItem(
   //   "835",
   //   "sub1",
@@ -40,7 +43,12 @@ const items = [
   //   // ]
   // ),
   // getItem("Ack", "9", <FileOutlined />),
-  getItem("Reports", "reports", <DesktopOutlined />),
+  getItem("Reports", "reports", <DesktopOutlined />, [
+    getItem("Claims", "reports/claims"),
+    getItem("Payments", "reports/payments"),
+    getItem("Top Patients", "reports/toppatients"),
+    getItem("Report 4", "reports/report4"),
+  ]),
 ];
 
 const App = () => {
@@ -70,6 +78,10 @@ const App = () => {
       navigate("/");
     }
   }, [isLoggedIn]);
+
+  const onCancel = () => {
+    //Do nothing
+  };
 
   return (
     <>
@@ -134,7 +146,18 @@ const App = () => {
                         fontSize: "24px",
                       }}
                     >
-                      <LogoutOutlined onClick={() => onLogout()} />
+                      <Popconfirm
+                        title="Logout"
+                        description="Are you sure want to Logout?"
+                        onConfirm={() => onLogout()}
+                        onCancel={() => onCancel()}
+                        okText="Yes"
+                        cancelText="No"
+                        placement="leftTop"
+                      >
+                        <Avatar size={32} icon={<UserOutlined />} />
+                      </Popconfirm>
+                      {/* <LogoutOutlined onClick={() => onLogout()} /> */}
                     </Col>
                   </Row>
                 </div>
@@ -159,7 +182,17 @@ const App = () => {
                     <Route path="/dashboard" exact element={<Dashboard />} />
                     <Route path="*" element={<NotFound />} />
                     <Route path="/files" element={<RFiles />} />
-                    <Route path="/reports" element={<Reports />} />
+
+                    <Route path="/reports/claims" element={<ClaimReports />} />
+                    <Route
+                      path="/reports/payments"
+                      element={<PaymentReports />}
+                    />
+                    <Route
+                      path="/reports/toppatients"
+                      element={<PatientReports />}
+                    />
+                    <Route path="/reports/report4" element={<Reports />} />
                   </Routes>
                 </div>
               </Content>

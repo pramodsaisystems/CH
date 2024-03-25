@@ -11,6 +11,7 @@ import {
   transformData1,
 } from "./data";
 import { getNoOfClaims } from "./actions";
+import "./dashboard.css";
 
 const Dashboard = () => {
   // user to invoke redux actions
@@ -94,8 +95,8 @@ const Dashboard = () => {
       {
         data: transformData,
         type: "line",
-        yField: "count",
-        colorField: () => "count",
+        yField: "Count",
+        colorField: () => "Count",
         style: { lineWidth: 2 },
         axis: { y: { position: "right" } },
         interaction: {
@@ -145,8 +146,8 @@ const Dashboard = () => {
       {
         data: transformData1,
         type: "line",
-        yField: "count",
-        colorField: () => "count",
+        yField: "Count",
+        colorField: () => "Count",
         style: { lineWidth: 2 },
         axis: { y: { position: "right" } },
         interaction: {
@@ -186,10 +187,138 @@ const Dashboard = () => {
   };
 
   return (
-    <div>
+    <div className="dash-cont">
       <h2 style={{ textAlign: "left" }}>Dashboard</h2>
-
+      {/* <div>
+        <Breadcrumb>
+          <Breadcrumb.Item>Home</Breadcrumb.Item>
+          <Breadcrumb.Item>
+            <a href="/dashboard">Dashboard</a>
+          </Breadcrumb.Item>
+        </Breadcrumb>
+      </div> */}
       <Row gutter={[8, 8]}>
+        <Col span={24}>
+          <h3 style={{ textAlign: "left", margin: "0px" }}>Key Claim Stats</h3>
+        </Col>
+        <Col flex={"20%"}>
+          <Card className="no-padding">
+            <Row>
+              <Col span={24} className="card-title">
+                $4674
+              </Col>
+              <Col span={24} className="card-footer">
+                CHARGE AMOUNT
+              </Col>
+            </Row>
+          </Card>
+        </Col>
+
+        <Col flex={"20%"}>
+          <Card className="no-padding">
+            <Row>
+              <Col span={24} className="card-title">
+                $439
+              </Col>
+              <Col span={24} className="card-footer">
+                AVERAGE CHARGE AMOUNT
+              </Col>
+            </Row>
+          </Card>
+        </Col>
+
+        <Col flex={"20%"}>
+          <Card className="no-padding">
+            <Row>
+              <Col span={24} className="card-title">
+                13
+              </Col>
+              <Col span={24} className="card-footer">
+                CLAIMS
+              </Col>
+            </Row>
+          </Card>
+        </Col>
+
+        <Col flex={"20%"}>
+          <Card className="no-padding">
+            <Row>
+              <Col span={24} className="card-title">
+                36
+              </Col>
+              <Col span={24} className="card-footer">
+                SERVICE LINES
+              </Col>
+            </Row>
+          </Card>
+        </Col>
+
+        <Col flex={"20%"}>
+          <Card className="no-padding">
+            <Row>
+              <Col span={24} className="card-title">
+                15/02/23 - 25/03/24
+              </Col>
+              <Col span={24} className="card-footer">
+                SERVICE DATES RANGE
+              </Col>
+            </Row>
+          </Card>
+        </Col>
+        <Col span={24}>
+          <h3 style={{ textAlign: "left", margin: "0px" }}>
+            Key Payment Stats
+          </h3>
+        </Col>
+        <Col flex={"25%"}>
+          <Card className="no-padding">
+            <Row>
+              <Col span={24} className="card-title">
+                $9,232
+              </Col>
+              <Col span={24} className="card-footer">
+                PAID AMOUNT
+              </Col>
+            </Row>
+          </Card>
+        </Col>
+        <Col flex={"25%"}>
+          <Card className="no-padding">
+            <Row>
+              <Col span={24} className="card-title">
+                $3,077
+              </Col>
+              <Col span={24} className="card-footer">
+                AVERAGE PAID AMOUNT
+              </Col>
+            </Row>
+          </Card>
+        </Col>
+        <Col flex={"25%"}>
+          <Card className="no-padding">
+            <Row>
+              <Col span={24} className="card-title">
+                4
+              </Col>
+              <Col span={24} className="card-footer">
+                PAYMENTS
+              </Col>
+            </Row>
+          </Card>
+        </Col>
+        <Col flex={"25%"}>
+          <Card className="no-padding">
+            <Row>
+              <Col span={24} className="card-title">
+                01/01/19 - 30/03/24
+              </Col>
+              <Col span={24} className="card-footer">
+                PAYMENTS DATES RANGE
+              </Col>
+            </Row>
+          </Card>
+        </Col>
+
         <Col span={8}>
           <Card hoverable>
             <h2>No. of Claims</h2>

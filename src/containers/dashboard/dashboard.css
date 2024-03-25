@@ -1,0 +1,25 @@
+.dash-cont {
+    .no-padding {
+        text-align: left;
+
+        .ant-card-body {
+            padding: 0px;
+        }
+
+        .card-title {
+            padding: 16px 8px;
+            font-size: 24px;
+            color: #01AEC7;
+            font-weight: 600;
+        }
+
+        .card-footer {
+            padding: 16px 8px;
+            font-weight: 600;
+            color: white;
+            font-size: 12px;
+            background-color: #01AEC7;
+            border-radius: 0px 0px 8px 8px;
+        }
+    }
+}

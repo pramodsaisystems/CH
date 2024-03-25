@@ -3,25 +3,35 @@ import { Table, Tag, Space, Button } from "antd";
 import { getTimezoneDateTime } from "../../utils/helper";
 import moment from "moment";
 
-const RFile837 = ({ f837 = [], loading = false }) => {
-  const getDate = function (row) {
+const RFile837 = ({ f837 = [], loading = false, onPushClick }) => {
+  const getDate = function (date) {
     return getTimezoneDateTime(
-      moment(row?.date).format("YYYY-MM-DD HH:MM:SS"),
-      "MM/DD/YYYY hh:mm a"
+      moment(date).format("YYYY-MM-DD HH:MM:SS"),
+      "MM/DD/YYYY, hh:mm a"
     );
   };
   const columns = [
     {
-      title: "Date / Time",
-      dataIndex: "date",
-      key: "date",
-      render: (text, rec) => <div>{getDate(rec)}</div>,
-    },
-
-    {
       title: "File Name",
       dataIndex: "FileName",
       key: "FileName",
+    },
+    {
+      title: "File Type",
+      dataIndex: "FileType",
+      key: "FileType",
+    },
+    {
+      title: "Last Modified",
+      dataIndex: "lastUpdated",
+      key: "lastUpdated",
+      render: (text) => <div>{getDate(text)}</div>,
+    },
+    {
+      title: "Loaded",
+      dataIndex: "RecievedDate",
+      key: "RecievedDate",
+      render: (text) => <div>{getDate(text)}</div>,
     },
 
     {
@@ -53,7 +63,9 @@ const RFile837 = ({ f837 = [], loading = false }) => {
           record?.Status?.toLowerCase() === "processed" ? (
             <div>{getDate(record.lastUpdated)}</div>
           ) : (
-            <Button type="primary">Push</Button>
+            <Button type="primary" onClick={() => onPushClick(record.FileName)}>
+              Push
+            </Button>
           )}
         </Space>
       ),

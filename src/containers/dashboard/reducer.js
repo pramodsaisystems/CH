@@ -16,6 +16,9 @@ import {
   GET_CLAIMS_BY_PROVIDER,
   GET_CLAIMS_BY_PROVIDER_SUCCESS,
   GET_CLAIMS_BY_PROVIDER_FAIL,
+  GET_CLAIMS_BY_PAYER,
+  GET_CLAIMS_BY_PAYER_SUCCESS,
+  GET_CLAIMS_BY_PAYER_FAIL,
 } from "./constants";
 
 const initialState = {
@@ -30,6 +33,8 @@ const initialState = {
   noOfClaims: [],
   noOfPatients: [],
   status: [],
+  providerClaims: [],
+  payerClaims: [],
 };
 
 const dashboardReducer = (state = initialState, action) =>
@@ -76,6 +81,28 @@ const dashboardReducer = (state = initialState, action) =>
         draft.status = action.data;
         break;
       case GET_STATUS_FAIL:
+        draft.loading = false;
+        break;
+      case GET_CLAIMS_BY_PROVIDER:
+        draft.loading = true;
+        draft.providerClaims = [];
+        break;
+      case GET_CLAIMS_BY_PROVIDER_SUCCESS:
+        draft.loading = false;
+        draft.providerClaims = action.data;
+        break;
+      case GET_CLAIMS_BY_PROVIDER_FAIL:
+        draft.loading = false;
+        break;
+      case GET_CLAIMS_BY_PAYER:
+        draft.loading = true;
+        draft.payerClaims = [];
+        break;
+      case GET_CLAIMS_BY_PAYER_SUCCESS:
+        draft.loading = false;
+        draft.payerClaims = action.data;
+        break;
+      case GET_CLAIMS_BY_PAYER_FAIL:
         draft.loading = false;
         break;
       default:

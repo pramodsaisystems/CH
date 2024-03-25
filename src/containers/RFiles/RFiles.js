@@ -29,13 +29,21 @@ const RFiles = () => {
       dispatch(getAck());
     }
   };
+
+  const onPushClick = (filename) => {
+    debugger;
+  };
   return (
     <div className="files-cont">
       <Card>
-        <h2 style={{ textAlign: "left" }}>Files</h2>{" "}
+        <h2 style={{ textAlign: "left" }}>EDI Files</h2>{" "}
         <Tabs defaultActiveKey="1" onChange={(e) => onTabChange(e)}>
           <TabPane tab={<div className="tab-title">837</div>} key="1">
-            <RFile837 f837={f837} loading={loading} />
+            <RFile837
+              f837={f837}
+              loading={loading}
+              onPushClick={(filename) => onPushClick(filename)}
+            />
           </TabPane>
           <TabPane tab={<div className="tab-title">835</div>} key="2">
             <RFile835 f835={f835} loading={loading} />

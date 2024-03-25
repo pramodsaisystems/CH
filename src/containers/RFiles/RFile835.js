@@ -13,15 +13,26 @@ const RFile835 = ({ f835 = [], loading = false }) => {
 
   const columns = [
     {
-      title: "Date / Time",
-      dataIndex: "date",
-      key: "date",
-      render: (text, rec) => <div>{getDate(rec)}</div>,
-    },
-    {
       title: "File Name",
       dataIndex: "FileName",
       key: "FileName",
+    },
+    {
+      title: "File Type",
+      dataIndex: "FileType",
+      key: "FileType",
+    },
+    {
+      title: "Last Modified",
+      dataIndex: "lastUpdated",
+      key: "lastUpdated",
+      render: (text) => <div>{getDate(text)}</div>,
+    },
+    {
+      title: "Loaded",
+      dataIndex: "RecievedDate",
+      key: "RecievedDate",
+      render: (text) => <div>{getDate(text)}</div>,
     },
   ];
 

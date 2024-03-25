@@ -14,6 +14,9 @@ import {
   GET_CLAIMS_BY_PROVIDER,
   GET_CLAIMS_BY_PROVIDER_SUCCESS,
   GET_CLAIMS_BY_PROVIDER_FAIL,
+  GET_CLAIMS_BY_PAYER,
+  GET_CLAIMS_BY_PAYER_SUCCESS,
+  GET_CLAIMS_BY_PAYER_FAIL,
 } from "./constants";
 
 export const getData = () => ({
@@ -83,5 +86,19 @@ export const getClaimsByProviderSuccess = (data) => ({
 
 export const getClaimsByProviderFail = (data) => ({
   type: GET_CLAIMS_BY_PROVIDER_FAIL,
+  data,
+});
+
+export const getClaimsByPayer = () => ({
+  type: GET_CLAIMS_BY_PAYER,
+});
+
+export const getClaimsByPayerSuccess = (data) => ({
+  type: GET_CLAIMS_BY_PAYER_SUCCESS,
+  data,
+});
+
+export const getClaimsByPayerFail = (data) => ({
+  type: GET_CLAIMS_BY_PAYER_FAIL,
   data,
 });
