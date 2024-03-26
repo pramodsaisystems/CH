@@ -10,6 +10,9 @@ import {
   GET_ACK,
   GET_ACK_SUCCESS,
   GET_ACK_FAIL,
+  GET_PUSH_837,
+  GET_PUSH_837_SUCCESS,
+  GET_PUSH_837_FAIL,
 } from "./constants";
 
 const initialState = {
@@ -53,6 +56,22 @@ const filesReducer = (state = initialState, action) =>
         draft.ack = action.data;
         break;
       case GET_ACK_FAIL:
+        draft.loading = false;
+        break;
+      case GET_PUSH_837:
+        draft.loading = true;
+        break;
+      case GET_PUSH_837_SUCCESS:
+        draft.loading = false;
+        let data = state.f837;
+        data = data.filter(function (obj) {
+          return obj.FileName !== action.data;
+        });
+
+        draft.f837 = data;
+
+        break;
+      case GET_PUSH_837_FAIL:
         draft.loading = false;
         break;
       default:

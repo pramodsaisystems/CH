@@ -8,6 +8,9 @@ import {
   GET_ACK,
   GET_ACK_SUCCESS,
   GET_ACK_FAIL,
+  GET_PUSH_837,
+  GET_PUSH_837_SUCCESS,
+  GET_PUSH_837_FAIL,
 } from "./constants";
 
 export const getF837 = () => ({
@@ -49,5 +52,20 @@ export const getAckSuccess = (data) => ({
 
 export const getAckFail = (data) => ({
   type: GET_ACK_FAIL,
+  data,
+});
+
+export const getPush837 = (data) => ({
+  type: GET_PUSH_837,
+  data,
+});
+
+export const getPush837Success = (data) => ({
+  type: GET_PUSH_837_SUCCESS,
+  data,
+});
+
+export const getPush837Fail = (data) => ({
+  type: GET_PUSH_837_FAIL,
   data,
 });

@@ -32,13 +32,34 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
 
 
-.login-container{
+.login-container {
   background: #EDEFF5;
-height: 100vh;
+  height: 100vh;
+}
+
+.sider,
+.sider .ant-menu-dark,
+.sider .ant-menu-dark .ant-menu-sub {
+  background: #1169AF !important;
+}
+
+.sider .ant-menu-dark {
+  .ant-menu-item-selected {
+    background-color: #4E92D1 !important;
+    border-radius: unset;
+  }
+}
+
+.sider {
+  .ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item:not(.ant-menu-item-selected):hover {
+    background-color: #4E92D1 !important;
+    border-radius: unset;
+  }
 }

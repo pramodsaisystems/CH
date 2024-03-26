@@ -3,7 +3,7 @@ import { Table, Tag, Card } from "antd";
 import { getTimezoneDateTime, getTimezoneDate } from "../../utils/helper";
 import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
-import { getReport } from "./actions";
+import { getReport, getPaymentsReport } from "./actions";
 
 const PaymentReports = () => {
   const dispatch = useDispatch();
@@ -13,6 +13,7 @@ const PaymentReports = () => {
   useEffect(() => {
     //Invoke action to call API for saga
     dispatch(getReport());
+    dispatch(getPaymentsReport());
   }, [dispatch]);
   const getDateTime = function (date) {
     return getTimezoneDateTime(

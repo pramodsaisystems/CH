@@ -6,6 +6,9 @@ let CMSApi = axios.create({
   baseURL: REACT_APP_API_URL,
   headers: {
     "Content-Type": "application/json",
+    // "Access-Control-Allow-Origin": "*",
+    // "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE",
+    // "Access-Control-Allow-Headers": "Content-Type",
   },
 });
 

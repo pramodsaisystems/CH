@@ -4,7 +4,7 @@ import RFile837 from "./RFile837";
 import RFile835 from "./RFile835";
 import ACKFile from "./ACKFile";
 import { useDispatch, useSelector } from "react-redux";
-import { getF837, getF835, getAck } from "./actions";
+import { getF837, getF835, getAck, getPush837 } from "./actions";
 import "./RFiles.css";
 
 const { TabPane } = Tabs;
@@ -31,7 +31,7 @@ const RFiles = () => {
   };
 
   const onPushClick = (filename) => {
-    debugger;
+    dispatch(getPush837(filename));
   };
   return (
     <div className="files-cont">

@@ -7,7 +7,7 @@ import {
   GET_CLAIMS_BY_PROVIDER,
   GET_CLAIMS_BY_PAYER,
 } from "./constants";
-import { get } from "../../utils/api";
+import { get, post } from "../../utils/api";
 import {
   getDataSuccess,
   getDataFail,
@@ -24,7 +24,10 @@ import {
 } from "./actions";
 
 function* getData() {
-  let data = yield get("/bwserve/v1/feed/?type=post")
+  let data = yield post("api/dashboard_data", {
+    date1: "2024-03-21",
+    date2: "2024-03-24",
+  })
     .then((result) => {
       return result;
     })

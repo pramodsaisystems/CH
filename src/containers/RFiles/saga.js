@@ -1,5 +1,5 @@
 import { takeEvery, put } from "redux-saga/effects";
-import { GET_F837, GET_F835, GET_ACK } from "./constants";
+import { GET_F837, GET_F835, GET_ACK, GET_PUSH_837 } from "./constants";
 import { get } from "../../utils/api";
 import {
   getF837Success,
@@ -8,6 +8,8 @@ import {
   getF835Fail,
   getAckFail,
   getAckSuccess,
+  getPush837Success,
+  getPush837Fail,
 } from "./actions";
 
 function* getF837Data() {
@@ -16,7 +18,6 @@ function* getF837Data() {
       return result;
     })
     .catch(() => console.error());
-  debugger;
   if (data && data.status === 200) {
     const f837 = yield data.data;
     yield put(getF837Success(f837));
@@ -53,10 +54,24 @@ function* getAckData() {
   }
 }
 
+function* getPush837File(payload) {
+  let data = yield get(`/api/push??filename=${payload.data}`)
+    .then((result) => {
+      return result;
+    })
+    .catch(() => console.error());
+  if (data && data.status === 200) {
+    yield put(getPush837Success(payload.data));
+  } else {
+    yield put(getPush837Fail(data));
+  }
+}
+
 function* filesSaga() {
   yield takeEvery(GET_F837, getF837Data);
   yield takeEvery(GET_F835, getF835Data);
   yield takeEvery(GET_ACK, getAckData);
+  yield takeEvery(GET_PUSH_837, getPush837File);
 }
 
 export default filesSaga;

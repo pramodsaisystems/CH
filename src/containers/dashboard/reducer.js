@@ -35,6 +35,7 @@ const initialState = {
   status: [],
   providerClaims: [],
   payerClaims: [],
+  dashboardData: [],
 };
 
 const dashboardReducer = (state = initialState, action) =>
@@ -42,10 +43,11 @@ const dashboardReducer = (state = initialState, action) =>
     switch (action.type) {
       case GET_DATA:
         draft.loading = true;
+        draft.dashboardData = [];
         break;
       case GET_DATA_SUCCESS:
         draft.loading = false;
-        draft.data = action.data;
+        draft.dashboardData = action.data;
         break;
       case GET_DATA_FAIL:
         draft.loading = false;

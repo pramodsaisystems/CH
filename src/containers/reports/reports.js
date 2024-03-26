@@ -96,7 +96,7 @@ const Reports = () => {
   return (
     <div>
       <Card>
-        <h2 style={{ textAlign: "left" }}>Reports</h2>{" "}
+        <h2 style={{ textAlign: "left" }}>Years Reports</h2>{" "}
         <Table
           columns={columns}
           dataSource={reports}

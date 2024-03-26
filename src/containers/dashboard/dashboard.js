@@ -5,12 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   // data1,
   data2,
-  uvBillData,
-  uvBillData1,
-  transformData,
-  transformData1,
+  // uvBillData,
+  // uvBillData1,
+  // transformData,
+  // transformData1,
 } from "./data";
-import { getNoOfClaims } from "./actions";
+import { getData } from "./actions";
 import "./dashboard.css";
 
 const Dashboard = () => {
@@ -20,7 +20,7 @@ const Dashboard = () => {
   const data1 = useSelector((state) => state.dashboardReducer.data);
   useEffect(() => {
     //Invoke action to call API for saga
-    dispatch(getNoOfClaims());
+    dispatch(getData());
   }, [dispatch]);
   const config = {
     data: data1,
@@ -68,97 +68,97 @@ const Dashboard = () => {
     legend: false,
   };
 
-  const config2 = {
-    xField: "time",
-    legend: {
-      color: {
-        itemMarker: "round",
-        itemMarkerSize: 14,
-        position: "right",
-      },
-    },
-    children: [
-      {
-        data: uvBillData,
-        type: "interval",
-        yField: "value",
-        stack: true,
-        colorField: "type",
-        style: { maxWidth: 80 },
-        label: { position: "inside" },
-        scale: { y: { domainMax: 1200 } },
-        interaction: {
-          elementHighlight: true,
-          elementHighlightByColor: { background: true },
-        },
-      },
-      {
-        data: transformData,
-        type: "line",
-        yField: "Count",
-        colorField: () => "Count",
-        style: { lineWidth: 2 },
-        axis: { y: { position: "right" } },
-        interaction: {
-          tooltip: {
-            crosshairs: false,
-            marker: false,
-          },
-        },
-      },
-    ],
-    theme: {
-      category10: [
-        "#F4A49E",
-        "#FACDAA",
-        "#EE7B91",
-        "#E85285",
-        "#BE408C",
-        "#BE408C",
-      ],
-    },
-  };
+  // const config2 = {
+  //   xField: "time",
+  //   legend: {
+  //     color: {
+  //       itemMarker: "round",
+  //       itemMarkerSize: 14,
+  //       position: "right",
+  //     },
+  //   },
+  //   children: [
+  //     {
+  //       data: uvBillData,
+  //       type: "interval",
+  //       yField: "value",
+  //       stack: true,
+  //       colorField: "type",
+  //       style: { maxWidth: 80 },
+  //       label: { position: "inside" },
+  //       scale: { y: { domainMax: 1200 } },
+  //       interaction: {
+  //         elementHighlight: true,
+  //         elementHighlightByColor: { background: true },
+  //       },
+  //     },
+  //     {
+  //       data: transformData,
+  //       type: "line",
+  //       yField: "Count",
+  //       colorField: () => "Count",
+  //       style: { lineWidth: 2 },
+  //       axis: { y: { position: "right" } },
+  //       interaction: {
+  //         tooltip: {
+  //           crosshairs: false,
+  //           marker: false,
+  //         },
+  //       },
+  //     },
+  //   ],
+  //   theme: {
+  //     category10: [
+  //       "#F4A49E",
+  //       "#FACDAA",
+  //       "#EE7B91",
+  //       "#E85285",
+  //       "#BE408C",
+  //       "#BE408C",
+  //     ],
+  //   },
+  // };
 
-  const config3 = {
-    xField: "time",
-    legend: {
-      color: {
-        itemMarker: "round",
-        itemMarkerSize: 14,
-        position: "right",
-      },
-    },
-    children: [
-      {
-        data: uvBillData1,
-        type: "interval",
-        yField: "value",
-        stack: true,
-        colorField: "type",
-        style: { maxWidth: 80 },
-        label: { position: "inside" },
-        scale: { y: { domainMax: 1200 } },
-        interaction: {
-          elementHighlight: true,
-          elementHighlightByColor: { background: true },
-        },
-      },
-      {
-        data: transformData1,
-        type: "line",
-        yField: "Count",
-        colorField: () => "Count",
-        style: { lineWidth: 2 },
-        axis: { y: { position: "right" } },
-        interaction: {
-          tooltip: {
-            crosshairs: false,
-            marker: false,
-          },
-        },
-      },
-    ],
-  };
+  // const config3 = {
+  //   xField: "time",
+  //   legend: {
+  //     color: {
+  //       itemMarker: "round",
+  //       itemMarkerSize: 14,
+  //       position: "right",
+  //     },
+  //   },
+  //   children: [
+  //     {
+  //       data: uvBillData1,
+  //       type: "interval",
+  //       yField: "value",
+  //       stack: true,
+  //       colorField: "type",
+  //       style: { maxWidth: 80 },
+  //       label: { position: "inside" },
+  //       scale: { y: { domainMax: 1200 } },
+  //       interaction: {
+  //         elementHighlight: true,
+  //         elementHighlightByColor: { background: true },
+  //       },
+  //     },
+  //     {
+  //       data: transformData1,
+  //       type: "line",
+  //       yField: "Count",
+  //       colorField: () => "Count",
+  //       style: { lineWidth: 2 },
+  //       axis: { y: { position: "right" } },
+  //       interaction: {
+  //         tooltip: {
+  //           crosshairs: false,
+  //           marker: false,
+  //         },
+  //       },
+  //     },
+  //   ],
+  // };
 
   const config4 = {
     data: [
@@ -339,7 +339,7 @@ const Dashboard = () => {
           </Card>
         </Col>
 
-        <Col span={12}>
+        {/* <Col span={12}>
           <Card hoverable>
             <h2>No. of Claims by Provider</h2>
             <DualAxes height={250} width={550} {...config2} />
@@ -350,7 +350,7 @@ const Dashboard = () => {
             <h2>No. of Claims by Payer</h2>
             <DualAxes height={250} width={550} {...config3} />
           </Card>
-        </Col>
+        </Col> */}
       </Row>
     </div>
   );

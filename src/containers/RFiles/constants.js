@@ -7,3 +7,6 @@ export const GET_F835_FAIL = "GET_F835_FAIL";
 export const GET_ACK = "GET_ACK";
 export const GET_ACK_SUCCESS = "GET_ACK_SUCCESS";
 export const GET_ACK_FAIL = "GET_ACK_FAIL";
+export const GET_PUSH_837 = "GET_PUSH_837";
+export const GET_PUSH_837_SUCCESS = "GET_PUSH_837_SUCCESS";
+export const GET_PUSH_837_FAIL = "GET_PUSH_837_FAIL";

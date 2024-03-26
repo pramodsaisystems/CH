@@ -7,9 +7,9 @@ import {
   FileOutlined,
   DashboardOutlined,
   DesktopOutlined,
-  UserOutlined,
+  LogoutOutlined,
 } from "@ant-design/icons";
-import { Layout, Menu, theme, Row, Col, Avatar, Popconfirm } from "antd";
+import { Layout, Menu, theme, Row, Col, Tooltip } from "antd";
 import Login from "./containers/login/login";
 
 import ClaimReports from "./containers/reports/claimreports";
@@ -18,6 +18,9 @@ import PaymentReports from "./containers/reports/paymentreports";
 import Reports from "./containers/reports/reports";
 import { useDispatch, useSelector } from "react-redux";
 import { updateLogin } from "./containers/login/actions";
+import logo from "../src/images/ch.svg";
+import longlogo from "../src/images/chl.svg";
+import profile from "../src/images/profile.svg";
 import "./App.css";
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -47,7 +50,7 @@ const items = [
     getItem("Claims", "reports/claims"),
     getItem("Payments", "reports/payments"),
     getItem("Top Patients", "reports/toppatients"),
-    getItem("Report 4", "reports/report4"),
+    getItem("Years", "reports/years"),
   ]),
 ];
 
@@ -79,10 +82,6 @@ const App = () => {
     }
   }, [isLoggedIn]);
 
-  const onCancel = () => {
-    //Do nothing
-  };
-
   return (
     <>
       {!isLoggedIn ? (
@@ -101,16 +100,29 @@ const App = () => {
             <Sider
               collapsible
               collapsed={collapsed}
+              className="sider"
               onCollapse={(value) => setCollapsed(value)}
             >
-              <div
-                className="demo-logo-vertical"
-                style={{ height: "64px" }}
-              ></div>
+              <div className="demo-logo-vertical" style={{ height: "64px" }}>
+                {collapsed ? (
+                  <img
+                    style={{ paddingTop: "15px" }}
+                    src={logo}
+                    alt={"clearing house"}
+                  />
+                ) : (
+                  <img
+                    style={{ paddingTop: "15px" }}
+                    src={longlogo}
+                    alt={"clearing house"}
+                  />
+                )}
+              </div>
               <Menu
                 theme="dark"
                 defaultSelectedKeys={[selectedMenu]}
                 mode="inline"
+                className="main-menu"
                 style={{ textAlign: "left" }}
                 items={items}
                 onClick={(e) => {
@@ -134,7 +146,11 @@ const App = () => {
                   <Row>
                     <Col
                       span={20}
-                      style={{ fontWeight: "600", fontSize: "24px" }}
+                      style={{
+                        fontWeight: "600",
+                        fontSize: "24px",
+                        color: "#1169AF",
+                      }}
                     >
                       Clearing House
                     </Col>
@@ -146,18 +162,21 @@ const App = () => {
                         fontSize: "24px",
                       }}
                     >
-                      <Popconfirm
-                        title="Logout"
-                        description="Are you sure want to Logout?"
-                        onConfirm={() => onLogout()}
-                        onCancel={() => onCancel()}
-                        okText="Yes"
-                        cancelText="No"
-                        placement="leftTop"
+                      <Tooltip
+                        title={
+                          <span>
+                            Logout <LogoutOutlined onClick={() => onLogout()} />
+                          </span>
+                        }
                       >
-                        <Avatar size={32} icon={<UserOutlined />} />
-                      </Popconfirm>
-                      {/* <LogoutOutlined onClick={() => onLogout()} /> */}
+                        <img
+                          src={profile}
+                          style={{ marginTop: "6px" }}
+                          height={52}
+                          width={200}
+                          alt="profile logo"
+                        />
+                      </Tooltip>
                     </Col>
                   </Row>
                 </div>
@@ -192,16 +211,32 @@ const App = () => {
                       path="/reports/toppatients"
                       element={<PatientReports />}
                     />
-                    <Route path="/reports/report4" element={<Reports />} />
+                    <Route path="/reports/years" element={<Reports />} />
                   </Routes>
                 </div>
               </Content>
-              <Footer
-                style={{
-                  textAlign: "center",
-                }}
-              >
-                Clearing House ©{new Date().getFullYear()}
+              <Footer>
+                <Row>
+                  <Col span={12} style={{ textAlign: "left" }}>
+                    ©{new Date().getFullYear()} Clearing House |{" "}
+                    <a href="/" style={{ textDecoration: "underline" }}>
+                      Privacy policy
+                    </a>{" "}
+                    |{" "}
+                    <a href="/" style={{ textDecoration: "underline" }}>
+                      Terms
+                    </a>
+                  </Col>
+                  <Col span={12} style={{ textAlign: "right" }}>
+                    <a href="/" style={{ textDecoration: "underline" }}>
+                      Security{"  "}
+                    </a>{" "}
+                    |{" "}
+                    <a href="/" style={{ textDecoration: "underline" }}>
+                      {"  "}Contact
+                    </a>
+                  </Col>
+                </Row>
               </Footer>
             </Layout>
           </Layout>
