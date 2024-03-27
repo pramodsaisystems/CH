@@ -42,7 +42,7 @@ const ACKFile = ({ ack = [], loading = false }) => {
         columns={columns}
         dataSource={ack}
         pagination={{ defaultPageSize: "5" }}
-        bordered
+        // bordered
         loading={loading}
       />
     </div>

@@ -79,7 +79,7 @@ const RFile837 = ({ f837 = [], loading = false, onPushClick }) => {
         columns={columns}
         dataSource={f837}
         pagination={{ defaultPageSize: "5" }}
-        bordered
+        // bordered
         loading={loading}
       />
     </div>

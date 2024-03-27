@@ -29,14 +29,18 @@ const PatientReports = () => {
 
   const columns = [
     {
-      title: "ID and Name",
+      title: "ID",
       dataIndex: "PateintId",
       key: "PateintId",
+      render: (text, rec) => <div>{rec?.PateintId ? rec?.PateintId : ""} </div>,
+    },
+
+    {
+      title: "Name",
+      dataIndex: "PatientName",
+      key: "PatientName",
       render: (text, rec) => (
-        <div>
-          {rec?.PateintId ? rec?.PateintId : ""}{" "}
-          {rec?.PatientName ? `- ${rec?.PatientName}` : ""}
-        </div>
+        <div>{rec?.PatientName ? `${rec?.PatientName}` : ""}</div>
       ),
     },
 
@@ -75,7 +79,7 @@ const PatientReports = () => {
   return (
     <div className="patient-cont">
       <Card>
-        <h2 style={{ textAlign: "left" }}>Patient Reports</h2>{" "}
+        <h2 style={{ textAlign: "left" }}>Patients</h2>{" "}
         <Table
           columns={columns}
           dataSource={patientsReport}

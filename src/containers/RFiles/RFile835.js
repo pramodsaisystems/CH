@@ -42,7 +42,7 @@ const RFile835 = ({ f835 = [], loading = false }) => {
         columns={columns}
         dataSource={f835}
         pagination={{ defaultPageSize: "5" }}
-        bordered
+        // bordered
         loading={loading}
       />
     </div>

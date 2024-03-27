@@ -181,7 +181,7 @@ const PaymentReports = () => {
   return (
     <div className="payment-cont">
       <Card>
-        <h2 style={{ textAlign: "left" }}>Payment Reports</h2>{" "}
+        <h2 style={{ textAlign: "left" }}>Payments</h2>{" "}
         <Table
           columns={columns}
           dataSource={paymentsReport}

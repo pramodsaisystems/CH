@@ -174,7 +174,7 @@ const ClaimReports = () => {
   return (
     <div className="claim-cont">
       <Card>
-        <h2 style={{ textAlign: "left" }}>Claim Reports</h2>{" "}
+        <h2 style={{ textAlign: "left" }}>Claims</h2>{" "}
         <Table
           columns={columns}
           dataSource={claimsReport}

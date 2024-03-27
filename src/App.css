@@ -75,3 +75,15 @@
 a {
   color: #1169AF;
 }
+
+.ant-table-content th {
+  color: #000000;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.ant-table-content td {
+  color: #000000;
+  font-size: 14px;
+  font-weight: 400;
+}

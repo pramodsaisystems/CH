@@ -73,7 +73,7 @@ const Reports = () => {
   return (
     <div>
       <Card>
-        <h2 style={{ textAlign: "left" }}>Years Reports</h2>{" "}
+        <h2 style={{ textAlign: "left" }}>Time Period</h2>{" "}
         <Table
           columns={columns}
           dataSource={yearsReport}
