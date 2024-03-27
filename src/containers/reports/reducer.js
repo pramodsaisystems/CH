@@ -22,8 +22,86 @@ import { GET_CLAIMS_BY_PAYER } from "../dashboard/constants";
 const initialState = {
   loading: false,
   reports: [],
-  claimsReport: [],
-  paymentsReport: [],
+  claimsReport: [
+    {
+      ClaimId: "01245",
+      ClaimDate: "3/27/2024",
+      ProviderName: "Alpha Services",
+      ProviderId: "01234568970",
+      PatientId: "5564565",
+      PatientName: "John Smith",
+      Gender: "Male",
+      AdmitDate: "3/25/2024",
+      Diagnosis: "Anxiety Disorder",
+      DiagnosisId: "F41.9",
+      Date: "3/25/2024",
+      Services: ["99213", "0300", "0305", "0730", "840087"],
+      ChargeAmount: "146",
+      ChargeRange: "0-700",
+      Priority: "High",
+      ServicesDetails: [
+        {
+          ID: "100",
+          ServiceDate: "3/25/2024",
+          ProcedureCode: "A047",
+          Description:
+            "Ambulance service, advanced life support, emergency transport, level 1 (als 1 - emergency)",
+          Units: "1",
+          ChargeAmt: "700",
+        },
+        {
+          ID: "101",
+          ServiceDate: "3/26/2024",
+          ProcedureCode: "A046",
+          Description:
+            "Ambulance Transportaion, Basic Life Support, Non Emergency",
+          Units: "21",
+          ChargeAmt: "8",
+        },
+      ],
+    },
+  ],
+  paymentsReport: [
+    {
+      ClaimId: "01245",
+      ClaimDate: "3/27/2024",
+      Payor: "Blue Cross",
+      PayorAddress: "123 Main St, Atony USA",
+      PayeeID: "1236665",
+      PayeeAddress: "Coastal Accounting Solutions",
+      PaidDate: "9/1/2024",
+      ServiceDate: "6/1/2024",
+      PatientId: "5564565",
+      PatientName: "John Smith",
+      Gender: "Male",
+      AdmitDate: "3/25/2024",
+      Services: ["99213", "0300", "0305", "0730", "840087"],
+      ChargeAmount: "146",
+      ChargeRange: "0-700",
+      PaidAmount: "100",
+      PaidRange: "0-200",
+      ServicesDetails: [
+        {
+          ID: "100",
+          ServiceDate: "3/25/2024",
+          ProcedureCode: "A047",
+          Description:
+            "Ambulance service, advanced life support, emergency transport, level 1 (als 1 - emergency)",
+          Units: "1",
+          ChargeAmt: "700",
+        },
+        {
+          ID: "101",
+          ServiceDate: "3/26/2024",
+          ProcedureCode: "A046",
+          Description:
+            "Ambulance Transportaion, Basic Life Support, Non Emergency",
+          Units: "21",
+          ChargeAmt: "8",
+        },
+      ],
+    },
+  ],
   patientsReport: [],
   yearsReport: [],
 };

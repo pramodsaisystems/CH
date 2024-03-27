@@ -62,4 +62,16 @@
     background-color: #4E92D1 !important;
     border-radius: unset;
   }
+
+  .ant-layout-sider-trigger {
+    background: #235E90;
+  }
+}
+
+.underline-text {
+  text-decoration: underline;
+}
+
+a {
+  color: #1169AF;
 }

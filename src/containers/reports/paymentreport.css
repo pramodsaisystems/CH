@@ -1,0 +1,15 @@
+.payment-cont {
+    .row-text {
+        color: #8C8C8C;
+    }
+
+    .ant-table-row-expand-icon {
+        border-radius: 2px;
+        background: #1169AF;
+    }
+
+    .ant-table-row-expand-icon::before,
+    .ant-table-row-expand-icon::after {
+        background: #FFFFFF;
+    }
+}

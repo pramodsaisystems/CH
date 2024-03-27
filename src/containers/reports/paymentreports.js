@@ -3,11 +3,12 @@ import { Table, Tag, Card } from "antd";
 import { getTimezoneDateTime, getTimezoneDate } from "../../utils/helper";
 import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
-import { getReport, getPaymentsReport } from "./actions";
+import { getPaymentsReport } from "./actions";
+import "./paymentreport.css";
 
 const PaymentReports = () => {
   const dispatch = useDispatch();
-  const reports = useSelector((state) => state.reportReducer.reports);
+
   const loading = useSelector((state) => state.reportReducer.loading);
   const paymentsReport = useSelector(
     (state) => state.reportReducer.paymentsReport
@@ -15,8 +16,7 @@ const PaymentReports = () => {
 
   useEffect(() => {
     //Invoke action to call API for saga
-    dispatch(getReport());
-    dispatch(getPaymentsReport());
+    // dispatch(getPaymentsReport());
   }, [dispatch]);
   const getDateTime = function (date) {
     return getTimezoneDateTime(
@@ -31,22 +31,45 @@ const PaymentReports = () => {
 
   const columns = [
     {
-      title: "Claim ID",
-      dataIndex: "ClaimID",
-      key: "ClaimID",
-      render: (text, rec) => <div>{text}</div>,
+      title: "Claim Id",
+      dataIndex: "ClaimId",
+      key: "ClaimId",
+      render: (text, rec) => (
+        <div>
+          <div>
+            <a className="underline-text">{rec.ClaimId}</a>
+          </div>
+          <div className="row-text">{rec?.ClaimDate ? rec.ClaimDate : ""}</div>
+        </div>
+      ),
     },
     {
       title: "Payer",
-      dataIndex: "Payer",
-      key: "Payer",
-      render: (text, rec) => <div>{text}</div>,
+      dataIndex: "Payor",
+      key: "Payor",
+      render: (text, rec) => (
+        <div>
+          <div>{rec.Payor}</div>
+          <div className="row-text">
+            {rec?.PayorAddress ? rec.PayorAddress : ""}
+          </div>
+        </div>
+      ),
     },
     {
       title: "Payee",
-      dataIndex: "Payee",
-      key: "Payee",
-      render: (text, rec) => <div>{text}</div>,
+      dataIndex: "PayeeID",
+      key: "PayeeID",
+      render: (text, rec) => (
+        <div>
+          <div>
+            <a className="underline-text">{rec.PayeeID}</a>
+          </div>
+          <div className="row-text">
+            {rec?.PayeeAddress ? rec.PayeeAddress : ""}{" "}
+          </div>
+        </div>
+      ),
     },
     {
       title: "Paid Date",
@@ -54,45 +77,127 @@ const PaymentReports = () => {
       key: "PaidDate",
       render: (text, rec) => <div>{text}</div>,
     },
-
     {
       title: "Patient",
-      dataIndex: "Patient",
-      key: "Patient",
-      render: (text) => <div>{text}</div>,
+      dataIndex: "PatientId",
+      key: "PatientId",
+      render: (text, rec) => (
+        <div>
+          <div>
+            <a className="underline-text">{rec.PatientId}</a>
+          </div>
+          <div className="row-text">
+            {rec?.PatientName ? rec.PatientName : ""}{" "}
+            {rec?.AdmitDate ? rec.AdmitDate : ""}
+          </div>
+        </div>
+      ),
     },
 
     {
       title: "Service Date",
-      dataIndex: "Service Date",
-      key: "Service Date",
-      render: (text) => <div>{text}</div>,
+      dataIndex: "ServiceDate",
+      key: "ServiceDate",
+      render: (text, rec) => <div>{text}</div>,
     },
 
     {
-      title: "Charge Amount",
-      dataIndex: "Charge Amount",
-      key: "Charge Amount",
-      render: (text) => <div>{text}</div>,
+      title: "Services",
+      dataIndex: "Services",
+      key: "Services",
+      render: (text, rec) => (
+        <div>
+          {text?.length > 0
+            ? text.map((i) => {
+                return <Tag color="blue">{i}</Tag>;
+              })
+            : ""}
+        </div>
+      ),
     },
-
     {
-      title: "Paid Amount",
-      dataIndex: "Paid Amount",
-      key: "Paid Amount",
-      render: (text) => <div>{text}</div>,
+      title: "Charge Amt",
+      dataIndex: "ChargeAmount",
+      key: "ChargeAmount",
+      render: (text, rec) => (
+        <div>
+          <div>{text}</div>
+          <div className="row-text">
+            {rec?.ChargeRange ? rec.ChargeRange : ""}
+          </div>
+        </div>
+      ),
+    },
+    {
+      title: "Paid Amt",
+      dataIndex: "PaidAmount",
+      key: "PaidAmount",
+      render: (text, rec) => (
+        <div>
+          <div>{text}</div>
+          <div className="row-text">{rec?.PaidRange ? rec.PaidRange : ""}</div>
+        </div>
+      ),
+    },
+  ];
+
+  const columns1 = [
+    {
+      title: "Id",
+      dataIndex: "ID",
+      key: "ID",
+      render: (text, rec) => <div>{text}</div>,
+    },
+    {
+      title: "Service Date",
+      dataIndex: "ServiceDate",
+      key: "ServiceDate",
+      render: (text, rec) => <div>{text}</div>,
+    },
+    {
+      title: "Procedure Code",
+      dataIndex: "ProcedureCode",
+      key: "ProcedureCode",
+      render: (text, rec) => (
+        <div>
+          <a className="underline-text">{text}</a> {rec?.Description}
+        </div>
+      ),
+    },
+    {
+      title: "Units",
+      dataIndex: "Units",
+      key: "Units",
+      render: (text, rec) => <div>{text}</div>,
+    },
+    {
+      title: "Charge Amt",
+      dataIndex: "ChargeAmt",
+      key: "ChargeAmt",
+      render: (text, rec) => <div>{text}</div>,
     },
   ];
 
   return (
-    <div>
+    <div className="payment-cont">
       <Card>
         <h2 style={{ textAlign: "left" }}>Payment Reports</h2>{" "}
         <Table
           columns={columns}
           dataSource={paymentsReport}
           pagination={{ defaultPageSize: "5" }}
-          bordered
+          rowSelection={false}
+          expandable={{
+            expandedRowRender: (record) => (
+              <Table
+                // bordered
+                columns={columns1}
+                dataSource={record.ServicesDetails}
+                pagination={{ position: ["none", "none"] }}
+              ></Table>
+            ),
+          }}
+          // bordered
           loading={loading}
         />
       </Card>
