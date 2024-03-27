@@ -3,16 +3,17 @@ import { Table, Tag, Card } from "antd";
 import { getTimezoneDateTime, getTimezoneDate } from "../../utils/helper";
 import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
-import { getReport } from "./actions";
+import { getYearsReport } from "./actions";
+import "./reports.css";
 
 const Reports = () => {
   const dispatch = useDispatch();
-  const reports = useSelector((state) => state.reportReducer.reports);
+  const yearsReport = useSelector((state) => state.reportReducer.yearsReport);
   const loading = useSelector((state) => state.reportReducer.loading);
 
   useEffect(() => {
     //Invoke action to call API for saga
-    dispatch(getReport());
+    // dispatch(getReport());
   }, [dispatch]);
   const getDateTime = function (date) {
     return getTimezoneDateTime(
@@ -27,69 +28,45 @@ const Reports = () => {
 
   const columns = [
     {
-      title: "Patient Name",
-      dataIndex: "PatientFirstName",
-      key: "PatientFirstName",
+      title: "Year-Month",
+      dataIndex: "PateintId",
+      key: "PateintId",
       render: (text, rec) => (
         <div>
-          {rec.PatientFirstName} {rec.PatientLastName}
+          {rec?.Year ? rec?.Year : ""} {rec?.Month ? `- ${rec?.Month}` : ""}
         </div>
       ),
     },
-    {
-      title: "Received Date",
-      dataIndex: "RecievedDate",
-      key: "RecievedDate",
-      render: (text) => <div>{getDate(text)}</div>,
-    },
-    {
-      title: "Provider Name",
-      dataIndex: "ProviderName",
-      key: "ProviderName",
-    },
-    {
-      title: "Payer Name",
-      dataIndex: "PayorName",
-      key: "PayorName",
-    },
-    {
-      title: "Date / Time",
-      dataIndex: "date",
-      key: "date",
-      render: (text) => <div>{getDateTime(text)}</div>,
-    },
 
     {
-      title: "File Name",
-      dataIndex: "FileName",
-      key: "FileName",
-    },
-
-    {
-      title: "Status",
-      key: "Status",
-      dataIndex: "Status",
-      render: (_, { Status }) => (
-        <>
-          <Tag
-            color={
-              Status?.toLowerCase() === "completed" ||
-              Status?.toLowerCase() === "processed"
-                ? "green"
-                : "yellow"
-            }
-            key={Status}
-          >
-            {Status.toUpperCase()}
-          </Tag>
-        </>
-      ),
+      title: "No Of Claims",
+      dataIndex: "NoOfClaims",
+      key: "NoOfClaims",
+      render: (text) => <div>{text}</div>,
     },
     {
-      title: "Last Updated",
-      dataIndex: "lastUpdated",
-      key: "lastUpdated",
-      render: (text) => <div>{getDate(text)}</div>,
+      title: "No Of Lines",
+      dataIndex: "NoOfLines",
+      key: "NoOfLines",
+      render: (text) => <div>{text}</div>,
+    },
+    {
+      title: "Total Charge Amt",
+      dataIndex: "TotalChargeAmt",
+      key: "TotalChargeAmt",
+      render: (text) => <div>{text}</div>,
+    },
+    {
+      title: "Avg Charge Amt",
+      dataIndex: "AverageChargeAmt",
+      key: "AverageChargeAmt",
+      render: (text) => <div>{text}</div>,
+    },
+    {
+      title: "Max Charge Amt",
+      dataIndex: "MaxChargeAmt",
+      key: "MaxChargeAmt",
+      render: (text) => <div>{text}</div>,
     },
   ];
 
@@ -99,9 +76,9 @@ const Reports = () => {
         <h2 style={{ textAlign: "left" }}>Years Reports</h2>{" "}
         <Table
           columns={columns}
-          dataSource={reports}
+          dataSource={yearsReport}
           pagination={{ defaultPageSize: "5" }}
-          bordered
+          // bordered
           loading={loading}
         />
       </Card>
