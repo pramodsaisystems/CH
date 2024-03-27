@@ -222,7 +222,7 @@ const Dashboard = () => {
 
           <Row>
             <Col span={12}>
-              <Card className="no-padding">
+              <Card className="no-padding provider-claims-card">
                 <Row>
                   <Col span={24} className="card-title-claims">
                     {dashboardData?.totalCharges
@@ -237,7 +237,7 @@ const Dashboard = () => {
             </Col>
 
             <Col span={12}>
-              <Card className="no-padding">
+              <Card className="no-padding provider-claims-card">
                 <Row>
                   <Col span={24} className="card-title-claims">
                     {dashboardData?.averageAmount
@@ -254,7 +254,7 @@ const Dashboard = () => {
 
           <Row className="dash-card-align-vert">
             <Col span={12}>
-              <Card className="no-padding">
+              <Card className="no-padding provider-claims-card">
                 <Row>
                   <Col span={24} className="card-title-claims">
                     {dashboardData?.numberOfClaims
@@ -268,7 +268,7 @@ const Dashboard = () => {
               </Card>
             </Col>
             <Col span={12}>
-              <Card className="no-padding">
+              <Card className="no-padding provider-claims-card">
                 <Row>
                   <Col span={24} className="card-title-claims">
                     {dashboardData?.ServiceLines
@@ -314,7 +314,7 @@ const Dashboard = () => {
 
           <Row>
             <Col span={12}>
-              <Card className="no-padding">
+              <Card className="no-padding provider-claims-card">
                 <Row>
                   <Col span={24} className="card-title-payments">
                     {dashboardData?.paidAmount
@@ -328,7 +328,7 @@ const Dashboard = () => {
               </Card>
             </Col>
             <Col span={12}>
-              <Card className="no-padding">
+              <Card className="no-padding provider-claims-card">
                 <Row>
                   <Col span={24} className="card-title-payments">
                     {dashboardData?.averagePaidAmount
@@ -345,7 +345,7 @@ const Dashboard = () => {
 
           <Row className="dash-card-align-vert">
             <Col span={12}>
-              <Card className="no-padding">
+              <Card className="no-padding provider-claims-card">
                 <Row>
                   <Col span={24} className="card-title-payments">
                     {dashboardData?.noOfPayments

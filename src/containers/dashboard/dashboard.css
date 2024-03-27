@@ -1,9 +1,6 @@
 .dash-cont {
     .no-padding {
-        text-align: left;
-        margin-right: 15px;
-        box-shadow: 0px 1px 2px 0px white;
-
+        text-align: left;    
         .ant-card-body {
             padding: 0px;
         }
@@ -104,8 +101,7 @@
     }
     .provider-claims-card{
         margin-right: 15px;      
-        box-shadow: 0px 1px 2px 0px white;
-
+        box-shadow: 0px 1px 2px 0px white;       
     }
 
     .provider-claims-title{
@@ -117,8 +113,5 @@
         text-align: left;
         margin-bottom: 15px;
     }
-    .container svg .g2-labels-group .g2-axis-label {
-        transform: translateY(100%) !important; /* Move labels to the bottom */
-      }
-   
+
 }
