@@ -1,25 +1,124 @@
 .dash-cont {
     .no-padding {
         text-align: left;
+        margin-right: 15px;
+        box-shadow: 0px 1px 2px 0px white;
 
         .ant-card-body {
             padding: 0px;
         }
 
-        .card-title {
+        .card-title-claims {
             padding: 16px 8px;
-            font-size: 20px;
-            color: #01AEC7;
+            color: #1169AF;
+            font-family: Lato;
+            font-size: 36px;
             font-weight: 600;
+            line-height: 36px;
+            letter-spacing: 0.01em;
+            text-align: left;
+        }
+
+        .card-title-payments {
+            padding: 16px 8px;
+            color: #01AEC7;
+            font-family: Lato;
+            font-size: 36px;
+            font-weight: 600;
+            line-height: 36px;
+            letter-spacing: 0.01em;
+            text-align: left;  
         }
 
         .card-footer {
             padding: 16px 8px;
             font-weight: 600;
             color: white;
-            font-size: 10px;
-            background-color: #01AEC7;
-            border-radius: 0px 0px 8px 8px;
+            background-color: #1169AF;
+            border-radius: 0px 0px 3px 3px;
+            font-family: Lato;
+            font-size: 14px;
+            line-height: 14px;
+            letter-spacing: 0.01em;
+            text-align: left;           
+
         }
+        .card-footer-payment{
+            padding: 16px 8px;
+            font-weight: 600;
+            color: white;
+            background-color: #01AEC7;
+            border-radius: 0px 0px 3px 3px;
+            font-size: 14px;
+            line-height: 14px;
+            letter-spacing: 0.01em;
+            text-align: left;         
+        }
+       
     }
+
+    .dash-card-align-vert{
+        margin-top: 15px;
+        margin-bottom: 35px;
+    }
+    .dash-title{
+        font-family: Lato;
+        font-size: 32px;
+        font-weight: 700;
+        line-height: 32px;
+        letter-spacing: 0.01em;
+        color: #1C1C1C;
+        text-align: left;
+    }
+
+
+    .claim-stats-title{
+        font-family: Lato;
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 18px;
+        letter-spacing: 0.01em;
+        text-align: left;
+        margin-bottom: 15px;
+
+    }
+
+    .claim-stats-range{
+        font-family: Lato;
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 18px;
+        letter-spacing: 0.01em;
+        text-align: left;
+        color: #1169AF;
+
+    }
+    .payment-stats-range{
+        font-family: Lato;
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 18px;
+        letter-spacing: 0.01em;
+        text-align: left;
+        color:#01AEC7
+    }
+    .provider-claims-card{
+        margin-right: 15px;      
+        box-shadow: 0px 1px 2px 0px white;
+
+    }
+
+    .provider-claims-title{
+        font-family: Lato;
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 18px;
+        letter-spacing: 0.01em;
+        text-align: left;
+        margin-bottom: 15px;
+    }
+    .container svg .g2-labels-group .g2-axis-label {
+        transform: translateY(100%) !important; /* Move labels to the bottom */
+      }
+   
 }
