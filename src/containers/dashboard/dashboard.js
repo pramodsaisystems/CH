@@ -18,6 +18,9 @@ const Dashboard = () => {
   const dispatch = useDispatch();
   //get data from redux store
   const data1 = useSelector((state) => state.dashboardReducer.data);
+  const dashboardData = useSelector(
+    (state) => state.dashboardReducer.dashboardData
+  );
   useEffect(() => {
     //Invoke action to call API for saga
     dispatch(getData());
@@ -205,7 +208,7 @@ const Dashboard = () => {
           <Card className="no-padding">
             <Row>
               <Col span={24} className="card-title">
-                $4674
+                {dashboardData?.totalCharges ? dashboardData?.totalCharges : ""}
               </Col>
               <Col span={24} className="card-footer">
                 CHARGE AMOUNT
@@ -218,7 +221,9 @@ const Dashboard = () => {
           <Card className="no-padding">
             <Row>
               <Col span={24} className="card-title">
-                $439
+                {dashboardData?.averageAmount
+                  ? dashboardData?.averageAmount
+                  : ""}
               </Col>
               <Col span={24} className="card-footer">
                 AVERAGE CHARGE AMOUNT
@@ -231,7 +236,9 @@ const Dashboard = () => {
           <Card className="no-padding">
             <Row>
               <Col span={24} className="card-title">
-                13
+                {dashboardData?.numberOfClaims
+                  ? dashboardData?.numberOfClaims
+                  : ""}
               </Col>
               <Col span={24} className="card-footer">
                 CLAIMS
@@ -257,7 +264,9 @@ const Dashboard = () => {
           <Card className="no-padding">
             <Row>
               <Col span={24} className="card-title">
-                15/02/23 - 25/03/24
+                {dashboardData?.startDate && dashboardData?.endDate
+                  ? `${dashboardData?.startDate} - ${dashboardData?.endDate}`
+                  : ""}
               </Col>
               <Col span={24} className="card-footer">
                 SERVICE DATES RANGE
@@ -274,7 +283,9 @@ const Dashboard = () => {
           <Card className="no-padding">
             <Row>
               <Col span={24} className="card-title">
-                $9,232
+              {dashboardData?.paidAmount
+                  ? dashboardData?.paidAmount
+                  : ""}
               </Col>
               <Col span={24} className="card-footer">
                 PAID AMOUNT
@@ -286,7 +297,9 @@ const Dashboard = () => {
           <Card className="no-padding">
             <Row>
               <Col span={24} className="card-title">
-                $3,077
+              {dashboardData?.averagePaidAmount
+                  ? dashboardData?.averagePaidAmount
+                  : ""}
               </Col>
               <Col span={24} className="card-footer">
                 AVERAGE PAID AMOUNT
@@ -298,7 +311,9 @@ const Dashboard = () => {
           <Card className="no-padding">
             <Row>
               <Col span={24} className="card-title">
-                4
+              {dashboardData?.noOfPayments
+                  ? dashboardData?.noOfPayments
+                  : ""}
               </Col>
               <Col span={24} className="card-footer">
                 PAYMENTS

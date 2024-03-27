@@ -9,6 +9,9 @@ const PaymentReports = () => {
   const dispatch = useDispatch();
   const reports = useSelector((state) => state.reportReducer.reports);
   const loading = useSelector((state) => state.reportReducer.loading);
+  const paymentsReport = useSelector(
+    (state) => state.reportReducer.paymentsReport
+  );
 
   useEffect(() => {
     //Invoke action to call API for saga
@@ -28,69 +31,56 @@ const PaymentReports = () => {
 
   const columns = [
     {
-      title: "Patient Name",
-      dataIndex: "PatientFirstName",
-      key: "PatientFirstName",
-      render: (text, rec) => (
-        <div>
-          {rec.PatientFirstName} {rec.PatientLastName}
-        </div>
-      ),
+      title: "Claim ID",
+      dataIndex: "ClaimID",
+      key: "ClaimID",
+      render: (text, rec) => <div>{text}</div>,
     },
     {
-      title: "Received Date",
-      dataIndex: "RecievedDate",
-      key: "RecievedDate",
-      render: (text) => <div>{getDate(text)}</div>,
+      title: "Payer",
+      dataIndex: "Payer",
+      key: "Payer",
+      render: (text, rec) => <div>{text}</div>,
     },
     {
-      title: "Provider Name",
-      dataIndex: "ProviderName",
-      key: "ProviderName",
+      title: "Payee",
+      dataIndex: "Payee",
+      key: "Payee",
+      render: (text, rec) => <div>{text}</div>,
     },
     {
-      title: "Payer Name",
-      dataIndex: "PayorName",
-      key: "PayorName",
-    },
-    {
-      title: "Date / Time",
-      dataIndex: "date",
-      key: "date",
-      render: (text) => <div>{getDateTime(text)}</div>,
+      title: "Paid Date",
+      dataIndex: "PaidDate",
+      key: "PaidDate",
+      render: (text, rec) => <div>{text}</div>,
     },
 
     {
-      title: "File Name",
-      dataIndex: "FileName",
-      key: "FileName",
+      title: "Patient",
+      dataIndex: "Patient",
+      key: "Patient",
+      render: (text) => <div>{text}</div>,
     },
 
     {
-      title: "Status",
-      key: "Status",
-      dataIndex: "Status",
-      render: (_, { Status }) => (
-        <>
-          <Tag
-            color={
-              Status?.toLowerCase() === "completed" ||
-              Status?.toLowerCase() === "processed"
-                ? "green"
-                : "yellow"
-            }
-            key={Status}
-          >
-            {Status.toUpperCase()}
-          </Tag>
-        </>
-      ),
+      title: "Service Date",
+      dataIndex: "Service Date",
+      key: "Service Date",
+      render: (text) => <div>{text}</div>,
     },
+
     {
-      title: "Last Updated",
-      dataIndex: "lastUpdated",
-      key: "lastUpdated",
-      render: (text) => <div>{getDate(text)}</div>,
+      title: "Charge Amount",
+      dataIndex: "Charge Amount",
+      key: "Charge Amount",
+      render: (text) => <div>{text}</div>,
+    },
+
+    {
+      title: "Paid Amount",
+      dataIndex: "Paid Amount",
+      key: "Paid Amount",
+      render: (text) => <div>{text}</div>,
     },
   ];
 
@@ -100,7 +90,7 @@ const PaymentReports = () => {
         <h2 style={{ textAlign: "left" }}>Payment Reports</h2>{" "}
         <Table
           columns={columns}
-          dataSource={reports}
+          dataSource={paymentsReport}
           pagination={{ defaultPageSize: "5" }}
           bordered
           loading={loading}
